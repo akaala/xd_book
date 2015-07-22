@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="  
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd 
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd        
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!-- 激活
+     @Required
+     @Autowired,jsr250's
+     @PostConstruct,
+     @PreDestroy and @ Resource等标注
+ -->
+<context:annotation-config />
+<!-- 
+    DispatcherServlet上下文,只搜索@Controller标注的类,不搜索其他标注的类
+ -->
+<!-- <context:component-scan base-package="com.xd.controller">
+     <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/> 
+</context:component-scan> -->
+<context:component-scan base-package="com.xd">
+     <!-- <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/> --> 
+</context:component-scan>
+
+<!-- 
+    
+    HandlerMapping无需配置,Spring MVC可以默认启动
+ -->
+ <!-- 
+     扩充了注解驱动,可以将请求参数绑定到控制器参数
+    启用基于annotation的handlerMapping.
+  -->
+<mvc:annotation-driven />
+
+<!-- 
+    静态资源处理,css,js,imgs
+ -->
+<mvc:resources location="/static/" mapping="/static/**"/>
+
+
+<!-- 视图解析器 -->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+    <property name="prefix" value="/WEB-INF/view/" />
+    <property name="suffix" value=".jsp" />
+</bean>
+<!-- 引入jdbc配置文件 -->
+<context:property-placeholder location="classpath:com/xd/config/jdbc.properties" />
+<!-- 创建jdbc数据源 -->
+<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<property name="driverClassName" value="${driver}" />
+	<property name="url" value="${url}" />
+	<property name="username" value="${username}" />
+	<property name="password" value="${password}" />
+</bean>
+<!-- 事务管理 -->
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<property name="dataSource" ref="dataSource"></property>
+</bean>
+<!-- 创建SqlSessionFactory,同时制定数据源 -->
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<property name="dataSource" ref="dataSource" />
+</bean>
+</beans>
