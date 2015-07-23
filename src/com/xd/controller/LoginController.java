@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.xd.model.User;
 import com.xd.service.UserService;
@@ -27,7 +28,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "doLogin",method=RequestMethod.POST)
-	public String doLogin(User user) {
+	public String doLogin(User user,RedirectAttributes attr) {
 		UserService service=new UserService();
 		int i=service.getUserCount(user);
 		String view="";
@@ -35,7 +36,12 @@ public class LoginController {
 			view="login/success";
 		}else {
 			view="redirect:loginpage";
+			//attr.addAttribute("msg", "登录失败!");
+			attr.addFlashAttribute("loginName",user.getLoginName());
+			attr.addFlashAttribute("password",user.getPassword());
+			attr.addFlashAttribute("msg", "登录失败!");
 		}
+		
 		return view;
 		
 	}
