@@ -2,21 +2,21 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost_3306
-Source Server Version : 50525
+Source Server Version : 50519
 Source Host           : localhost:3306
 Source Database       : xd_book
 
 Target Server Type    : MYSQL
-Target Server Version : 50525
+Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2015-07-23 21:32:15
+Date: 2015-07-24 19:15:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `tb_book`
+-- Table structure for tb_book
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_book`;
 CREATE TABLE `tb_book` (
@@ -36,21 +36,24 @@ CREATE TABLE `tb_book` (
 INSERT INTO `tb_book` VALUES ('T123', 'java编程思想', '诸葛亮', '28.50', '机械工业出版社', '1');
 
 -- ----------------------------
--- Table structure for `tb_department`
+-- Table structure for tb_department
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_department`;
 CREATE TABLE `tb_department` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '部门名称',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of tb_department
 -- ----------------------------
+INSERT INTO `tb_department` VALUES ('1', '研发部');
+INSERT INTO `tb_department` VALUES ('2', '市场部');
+INSERT INTO `tb_department` VALUES ('3', '财务部');
 
 -- ----------------------------
--- Table structure for `tb_manager`
+-- Table structure for tb_manager
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_manager`;
 CREATE TABLE `tb_manager` (
@@ -67,7 +70,7 @@ CREATE TABLE `tb_manager` (
 INSERT INTO `tb_manager` VALUES ('4', '3');
 
 -- ----------------------------
--- Table structure for `tb_user`
+-- Table structure for tb_user
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE `tb_user` (
@@ -75,15 +78,20 @@ CREATE TABLE `tb_user` (
   `name` varchar(50) COLLATE utf8_bin NOT NULL,
   `departId` int(50) DEFAULT NULL,
   `job` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '职位',
-  `birth` datetime DEFAULT NULL,
-  `entry` datetime DEFAULT NULL COMMENT '入职时间',
+  `birth` date DEFAULT NULL,
+  `entry` date DEFAULT NULL COMMENT '入职时间',
   `password` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
   `loginName` varchar(50) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `登录名` (`loginName`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES ('3', '郭延思', '1', '架构师', '1990-09-07 00:00:00', '2014-06-23 00:00:00', '123456', '思思博士1');
+INSERT INTO `tb_user` VALUES ('3', '郭延思', '1', '架构师', '1990-09-07', '2014-06-23', '123456', '思思博士1');
+INSERT INTO `tb_user` VALUES ('4', '郭', '2', '前端工程师!', '1990-09-07', '2013-06-23', '123', 'guoyansi');
+INSERT INTO `tb_user` VALUES ('6', '郭', '2', '前端工程师!', '1990-09-07', '2013-06-23', 'ICy5YqxZB1uWSwcVLSNLcA==', 'guoyansii');
+INSERT INTO `tb_user` VALUES ('9', '郭延思', '0', '前端工程师', '1990-09-07', '2013-06-23', '4QrcOUm6Wau+VuBX8g+IPg==', 'sisi');
+INSERT INTO `tb_user` VALUES ('10', 'guoyansi', '0', 'java', '1990-09-07', '2013-06-23', '4QrcOUm6Wau+VuBX8g+IPg==', 'sisii');
+INSERT INTO `tb_user` VALUES ('11', 'gh', '0', 'dfa', '1990-06-23', '2015-01-23', '4QrcOUm6Wau+VuBX8g+IPg==', 'q');

@@ -4,9 +4,65 @@
 
 <mapper namespace="user">
     <select id="queryUser" parameterType="user" resultType="user">
-        select * from tb_user
+        select * from tb_user 
+		<where>
+			<if test="id !=0">
+				id=#{id}
+			</if>
+			<if test="name !=null and name !='' ">
+				and name like '%${name}%' 
+			</if>
+			<if test="departId!=0">
+				and departId =#{departId}
+			</if>		
+			<if test="loginName!='' and loginName!=null">
+				and loginName=#{loginName}
+			</if>
+			<if test="password!=null and password !='' ">
+				and password=#{password}
+			</if>
+		
+		</where>
+		 
     </select>
     <select id="getUserCount"  parameterType="user" resultType="int">
-    	select count(*) from tb_user where loginName=#{loginName} and password=#{password}
+    	select count(*) from tb_user 
+    		<where>
+			<if test="id !=0">
+				id=#{id}
+			</if>
+			<if test="name !=null and name !='' ">
+				and name like '%${name}%' 
+			</if>
+			<if test="departId!=0">
+				and departId =#{departId}
+			</if>		
+			<if test="loginName!='' and loginName!=null">
+				and loginName=#{loginName}
+			</if>
+			<if test="password!=null and password !='' ">
+				and password=#{password}
+			</if>
+		</where>
+    </select>
+    <insert id="insertUser" parameterType="user" useGeneratedKeys="true" keyProperty="id" >
+    	insert into tb_user
+    	(name,departId,job,birth,entry,password,loginName)
+    	values
+    	(#{name},#{departId},#{job},#{birth},#{entry},#{password},#{loginName})
+    </insert>
+     <update id="updateUser" parameterType="user">
+    	update into set 
+    	name=#{name},
+    	departId=#{departId},
+    	job=#{job},
+    	birth=#{birth},
+    	entry=#{entry},
+    	password=#{password},
+    	loginName=#{loginName}
+    	where id=#{id}
+    </update> 
+    <select id="getDepart" resultType="department">
+    	select id,name from tb_department;
     </select>
 </mapper>
