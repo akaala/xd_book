@@ -4,14 +4,17 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.scripting.xmltags.VarDeclSqlNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -61,19 +64,43 @@ public class LoginController {
 		model.addAttribute("depart",userService.getDepart());
 		return "login/register";
 	}
-	@RequestMapping(value="/doRegister")
-	public @ResponseBody String doRegister(User user,RedirectAttributes attr,HttpServletRequest request){
+/*	@RequestMapping(value="/doRegister")
+	public @ResponseBody String doRegister(@RequestBody User user,RedirectAttributes attr,HttpServletRequest request){
 		//attr.addFlashAttribute("user",user);
 		String name=request.getParameter("name");
 		
-		return "fdfdfd";
+	//	return "fdfdfd";
+		System.out.println("name:>>>>>>>>>>>>>>>"+name);
+		String result=userService.saveUser(user);
+		return result;
+	}*/
+/*	@RequestMapping(value="/doRegister")
+	public @ResponseBody String doRegister(@RequestParam(value="name") @RequestBody String name,RedirectAttributes attr,HttpServletRequest request){
+		//attr.addFlashAttribute("user",user);
+		//String name=request.getParameter("name");
 		
+	//	return "fdfdfd";
+		System.out.println("name:>>>>>>>>>>>>>>>"+name);
 		//String result=userService.saveUser(user);
-		//return result;
+		return "1234";
+	}*/
+	//public @ResponseBody String doRegister(@RequestParam(value="name") @RequestBody String name){
+	@RequestMapping(value="/doRegister",method=RequestMethod.POST)
+	@ResponseBody
+  public String doRegister(User user,HttpServletResponse response){
+		System.out.println("name:>>>>>>>>>>>>>>>"+user.getName());
+		String result=userService.saveUser(user);
+		return result;
+		//return "{'name':'guoyansi','age':25}";
 	}
+	
 	@RequestMapping(value="/registerInit",method=RequestMethod.GET)
 	public @ResponseBody List<Department> getDepart(){
 		return userService.getDepart();
+	}
+	@RequestMapping(value="/test/{id}",method=RequestMethod.POST)
+	public String test(){
+		return "返回post值";
 	}
 	
 

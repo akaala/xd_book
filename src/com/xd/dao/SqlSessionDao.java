@@ -20,6 +20,6 @@ public class SqlSessionDao {
 			e.printStackTrace();
 		}
 	}
-	public static SqlSession session = sqlSessionFactory.openSession();
+	public SqlSession session = sqlSessionFactory.openSession();
 
 }

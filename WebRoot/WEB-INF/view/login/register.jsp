@@ -18,6 +18,8 @@
 	src="<%=path%>/static/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript"
 	src="<%=path%>/static/js/angular-1.3.14.min.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/static/js/login.js"></script>
 <style>
 .notice {
 	color: red;
@@ -75,100 +77,6 @@
 			</fieldset>
 		</form>
 	</div>
-	<script type="text/javascript">
-		/* $.ajax({
-			url:"login/registerInit",
-			type:"get"
-		}).done(function(data){
-			var html="<option value='0'>==请选择==</option>";
-			for(var i=0;i<data.length;i++){
-				html+="<option value="+data[i].id+">"+data[i].name+"</option>";
-			}
-			$("select[name=departId]").html(html);
-		}).fail(function(){
-			alert("失败");
-		}); */
 
-		var registerModule = angular.module("registerModule", []);
-		registerModule.controller("registerController",
-				function($scope, $http) {
-					$scope.user = {
-						name : "",
-						loginName : "",
-						job : "",
-						entry : "",
-						birth : "",
-						departId:"",
-					};
-
-					$http.get('login/registerInit').success(
-							function(data, status, headers, config) {
-								$scope.departments = data;
-							}).error(function(data, status, headers, config) {
-						alert("服务器连接失败");
-					});
-
-					$scope.saveRegister = function() {
-						if ($scope.user.name == "") {
-							alert("真实姓名是必填项");
-							return;
-						}
-						if ($scope.user.loginName == "") {
-							alert("登录名是必填项");
-							return;
-						}
-						//alert($scope.user.name);
-						//return;
-						/* $http.post("login/doRegister",{name:"ggggggggg",loginName:"log"}).success(function(data){
-								alert(data);
-							}).error(function(){
-								alert("服务器连接失败!")
-							}); */
-							var transFn = function(data) {
-				                return $.param(data);
-				            };
-							var postCfg = {
-					                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-					                transformRequest: transFn
-					            };
-							/* $http({
-								url:"login/doRegister",
-								data:$scope.user,
-								method:"post"
-							}); */
-							/*TODO - 暂时不知道怎么做  */
-							 $http.post("login/doRegister",$scope.user,postCfg).success(function(data){
-								alert(data);
-							}).error(function(){
-								alert("连接服务器失败!");
-							}); 
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-						}
-					
-
-				});
-
-		/*  	function saveRegister(){
-		 				
-		 		$.ajax({
-		 			url:"login/doRegister",
-		 			type:"post",
-		 			data:$("#registerForm").serialize()
-		 		}).done(function(data){
-		 			alert(data);
-		 		}).fail(function(){
-		 			alert("服务器连接失败!");
-		 		});
-		 	} */
-	</script>
 </body>
 </html>

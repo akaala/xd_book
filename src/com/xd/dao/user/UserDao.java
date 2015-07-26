@@ -10,11 +10,17 @@ import com.xd.model.Department;
 import com.xd.model.User;
 
 @Repository
-public class UserDao {
-	private SqlSession session=null;
-	public UserDao(){
-		session=SqlSessionDao.session;
+public class UserDao{
+	
+	private SqlSession getSession(){
+		SqlSessionDao sqlSessionDao=new SqlSessionDao();
+		return sqlSessionDao.session;
 	}
+	
+	/*private SqlSession session=null;
+	public UserDao(){
+		session=(new SqlSessionDao()).session;
+	}*/
 	
 	/*public static void main(String[] args) {
 		UserDao loginDao=new UserDao();
@@ -27,15 +33,16 @@ public class UserDao {
 	 */
 	public int getUserCount(User user){
 		int count=0;
+		SqlSession session=getSession();
 		try {
 			count=session.selectOne("user.getUserCount",user);
 		} catch (Exception e) {
 			System.out.println("Dao层getUserCount方法异常......");
 			e.printStackTrace();
 		}
-		/*finally{
+		finally{
 			session.close();
-		}*/
+		}
 		return count;
 	}
 	/**
@@ -44,6 +51,7 @@ public class UserDao {
 	 */
 	public int insertUser(User user){
 		int id=0;
+		SqlSession session=getSession();
 		try {
 			id=session.insert("user.insertUser",user);
 			session.commit();
@@ -51,9 +59,9 @@ public class UserDao {
 			System.out.println("Dao层insertUser方法异常......");
 			e.printStackTrace();
 		}
-		/*finally{
+		finally{
 			session.close();
-		}*/
+		}
 		return id;
 	}
 	
@@ -62,15 +70,16 @@ public class UserDao {
 	 */
 	public int updateUser(User user){
 		int id=0;
+		SqlSession session=getSession();
 		try {
 			id=session.update("user.updateUser",user);
 		} catch (Exception e) {
 			System.out.println("Dao层updateUser方法异常......");
 			e.printStackTrace();
 		}
-		/*finally{
+		finally{
 			session.close();
-		}*/
+		}
 		return id;
 	}
 	/**
@@ -78,14 +87,15 @@ public class UserDao {
 	 */
 	public List<Department> getDepart(){
 		List<Department> list=null;
+		SqlSession session=getSession();
 		try {
 			list=session.selectList("user.getDepart",null);
 		} catch (Exception e) {
 			System.out.println("userDao层getDepart发生异常......");
 			e.printStackTrace();
-		}/*finally{
+		}finally{
 			session.close();
-		}*/
+		}
 		return list;
 	}
 }
