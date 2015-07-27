@@ -14,7 +14,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>mvc-dispatcher</servlet-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>*.it</url-pattern>
   </servlet-mapping>
   
   <!-- 配置utf-8的编码格式 -->

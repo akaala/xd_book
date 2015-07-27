@@ -23,7 +23,7 @@
 						departId:1,
 					};
 
-					$http.get('login/registerInit').success(
+					$http.get('login.it?it=registerInit').success(
 							function(data, status, headers, config) {
 								$scope.departments = data;
 							}).error(function(data, status, headers, config) {
@@ -57,13 +57,12 @@
 								data:$scope.user,
 								method:"post"
 							}); */
-							/*TODO - 暂时不知道怎么做  */
 							
 							/*$.post("login/doRegister",$scope.user,function(data){
 								alert(data);
 							},"text");*/
 							
-							$.ajax({
+							/*$.ajax({
 								url:"login/doRegister",
 								data:$scope.user,
 								type:"post"
@@ -71,14 +70,14 @@
 								alert(data);
 							}).fail(function(){
 								alert("连接服务器失败!");
-							});
+							});*/
 							
-							/* $http.post("login/doRegister",$scope.user,postCfg)
+							 $http.post("login.it?it=doRegister",$scope.user,postCfg)
 							 .success(function(data,status,headers,config){
 								alert(data);
 							}).error(function(data,status,headers,config){
 								alert("连接服务器失败!");
-							}); */
+							}); 
 							
 							/*$http({
 								method:"post",

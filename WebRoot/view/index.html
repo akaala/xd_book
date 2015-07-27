@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="xdModule">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="../static/uiFrame/css/pure-min.css" />
+		<link type="text/css" rel="stylesheet" href="../static/xd_static/css/index.css" />
+		<script type="text/javascript" src="../static/uiFrame/js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="../static/uiFrame/js/angular.min-1.4.3.js"></script>
+		<script type="text/javascript" src="../static/uiFrame/js/angular-route.min-1.4.3.js"></script>
+		<script type="text/javascript" src="../static/xd_static/js/index.js"></script>
+	</head>
+	<body>
+		<div class="xd-left">
+			<h3 class="xd-menu-title">菜单</h3>
+			<ul class="xd-menu-box">
+				<li><a class="xd-menu-text">人员管理</a></li>
+				<li><a class="xd-menu-text">部门管理</a></li>
+				<li><a class="xd-menu-text">书籍管理</a></li>
+				<li><a class="xd-menu-text">借阅管理</a></li>
+				<li><a class="xd-menu-text">修改资料</a></li>
+				<li><a class="xd-menu-text" href="#/list">图书list</a></li>
+				<li><a class="xd-menu-text" href="#/detail">图书detail</a></li>
+			</ul>
+		</div>
+		<div class="xd-right">
+			<div ng-view></div>
+		</div>
+	</body>
+</html>

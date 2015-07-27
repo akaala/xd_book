@@ -1,5 +1,6 @@
 package com.xd.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,7 @@ import com.xd.model.User;
 import com.xd.service.UserService;
 
 @Controller
-@RequestMapping(value = "/login")
+@RequestMapping("/login.it")
 public class LoginController {
 	/*@Autowired
 	@Qualifier("UserService")*/
@@ -35,12 +36,12 @@ public class LoginController {
 	public LoginController (){
 		userService=new UserService();
 	}
-	@RequestMapping(value = "/loginpage")
+	@RequestMapping(params="it=loginpage")
 	public String loginPage() {
 		return "login/login";
 	}
 
-	@RequestMapping(value = "doLogin",method=RequestMethod.POST)
+	@RequestMapping(params="it=doLogin",method=RequestMethod.POST)
 	public String doLogin(User user,RedirectAttributes attr) {
 		UserService service=new UserService();
 		int i=service.getUserCount(user);
@@ -56,7 +57,7 @@ public class LoginController {
 		}
 		return view;		
 	}
-	@RequestMapping(value="register",method=RequestMethod.GET)
+	@RequestMapping(params="it=register",method=RequestMethod.GET)
 	public String getRegisterPage(Model model){
 		//attr.addFlashAttribute("depart","获取部门");//userService.getDepart()
 		//attr.addAttribute("depart","获取部门");
@@ -85,23 +86,24 @@ public class LoginController {
 		return "1234";
 	}*/
 	//public @ResponseBody String doRegister(@RequestParam(value="name") @RequestBody String name){
-	@RequestMapping(value="/doRegister",method=RequestMethod.POST)
+	@RequestMapping(params="it=doRegister",method=RequestMethod.POST)
 	@ResponseBody
   public String doRegister(User user,HttpServletResponse response){
 		System.out.println("name:>>>>>>>>>>>>>>>"+user.getName());
 		String result=userService.saveUser(user);
+		//Map<String, String> map=new HashMap<String, String>();
+		//map.put("status", "success");
+		//map.put("msg", "成功");
+		
 		return result;
 		//return "{'name':'guoyansi','age':25}";
 	}
 	
-	@RequestMapping(value="/registerInit",method=RequestMethod.GET)
+	@RequestMapping(params="it=registerInit",method=RequestMethod.GET)
 	public @ResponseBody List<Department> getDepart(){
 		return userService.getDepart();
 	}
-	@RequestMapping(value="/test/{id}",method=RequestMethod.POST)
-	public String test(){
-		return "返回post值";
-	}
+
 	
 
 }

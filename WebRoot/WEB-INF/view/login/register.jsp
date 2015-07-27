@@ -12,14 +12,14 @@
 <base href="<%=basePath%>">
 <title>注册</title>
 <link type="text/css" rel="stylesheet" />
-<link href="<%=path%>/static/css/pure-min.css" rel="stylesheet"
+<link href="<%=path%>/static/uiFrame/css/pure-min.css" rel="stylesheet"
 	type="text/css">
 <script type="text/javascript"
-	src="<%=path%>/static/js/jquery-1.11.1.min.js"></script>
+	src="<%=path%>/static/uiFrame/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript"
-	src="<%=path%>/static/js/angular-1.3.14.min.js"></script>
+	src="<%=path%>/static/uiFrame/js/angular-1.3.14.min.js"></script>
 <script type="text/javascript"
-	src="<%=path%>/static/js/login.js"></script>
+	src="<%=path%>/static/xd_static/js/login.js"></script>
 <style>
 .notice {
 	color: red;
