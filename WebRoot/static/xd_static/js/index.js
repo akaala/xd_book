@@ -1,10 +1,10 @@
 var xdModule=angular.module("xdModule",['ngRoute']);
 xdModule.config(['$routeProvider',function($routeProvider){
 	$routeProvider.when("/list",{
-		templateUrl:"list.html",
+		templateUrl:"book/list.html",
 		controller:"BookListController"
 	}).when("/detail",{
-		templateUrl:"detail.html",
+		templateUrl:"login/list.html",
 		controller:"BookDetailController"
 	}) .otherwise({
 		redirectTo: '/list'
