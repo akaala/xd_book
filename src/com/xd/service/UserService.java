@@ -41,7 +41,23 @@ public class UserService {
 		}
 		return md5string;
 	}
-	
+	/**
+	 * 判断登录名是否可用
+	 * @param user
+	 * @return
+	 */
+	private boolean checkLoginName(User user) {
+		User u=new User();
+		boolean result=false;
+		u.setLoginName(user.getLoginName());
+		int i=userDao.getUserCount(user);
+		if(i>=1){
+			result=false;//该登录名不可用
+		}else{
+			result=true;//登录名可用
+		}
+		return result;
+	}
 	
 	/**
 	 * 获取人员数量
@@ -57,7 +73,36 @@ public class UserService {
 		}
 		return userDao.getUserCount(user);
 	}
-
+private String insertUser(User user){
+	String result="";
+	String md5Password=getMD5String("123456");
+	user.setPassword(md5Password);
+	if(user.getEntry().equals("")){
+		user.setEntry(null);
+	}
+	if(user.getBirth().equals("")){
+		user.setBirth(null);
+	}
+	int i = userDao.insertUser(user);
+	if(i>0){
+		result="注册成功";
+	}else {
+		result="注册失败";
+	}
+	return result;
+}
+	private String updateUser(User user){
+		String result="";
+		int i=0;
+		i = userDao.updateUser(user);
+		if(i==0){
+			result="修改失败";
+		}else {
+			result="修改成功";
+		}
+		return result;
+	}
+	
 	/**
 	 * 保存用户信息
 	 * 
@@ -67,17 +112,16 @@ public class UserService {
 	public String saveUser(User user) {
 		int i = 0;
 		String result = "";
-		if (user.getId() == 0) {// 插入
-			String md5Password=getMD5String("123456");
-			user.setPassword(md5Password);
-			i = userDao.insertUser(user);
-		} else {// 更新
-			i = userDao.updateUser(user);
-		}
-		if (i == 0) {
-			result = "数据保存失败";
-		} else {
-			result = "数据保存成功";
+		boolean b=checkLoginName(user);
+		if(b){//登陆名可用
+			if (user.getId() == 0) {// 插入
+				result=insertUser(user);
+			}
+			else {// 更新
+				result=updateUser(user);
+			}
+		}else {//登录名被占用
+			result="该登陆名被占用!";
 		}
 		return result;
 	}

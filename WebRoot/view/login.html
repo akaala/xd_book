@@ -47,27 +47,27 @@
 <div class="register-form-box" ng-controller="registerController">
 	<form class="pure-form" onsubmit="return false;">
     <fieldset class="pure-group">
-        <input type="text" class="pure-input-1" placeholder="职位">
-        <input type="email" class="pure-input-1" placeholder="出生日期">
-        <input type="email" class="pure-input-1" placeholder="入职时间">
-        <select class="pure-input-1" style="height:2.6em">
-        	<option>==请选择==</option>
-        	<option>研发部</option>
-        	<option>工程部</option>
-        	<option>综管部</option>
+        <input type="text" class="pure-input-1" ng-model="user.job" placeholder="职位">
+        <input type="text" class="pure-input-1" ng-model="user.birth" placeholder="出生日期 格式:1990-09-07">
+        <input type="text" class="pure-input-1" ng-model="user.entry" placeholder="入职时间 格式:2014-09-23">
+        <select class="pure-input-1" style="height:2.6em" ng-model="user.deptId" ng-change="selectDeptChange()">
+        	<option value="0" ng-selected="true">==部门==</option>
+        	<option value="1">研发部</option>
+        	<option value="2">工程部</option>
+        	<option value="3">综管部</option>
         </select>
     </fieldset>
 
     <fieldset class="pure-group">
-        <input type="text" class="pure-input-1" placeholder="真实姓名">
-        <input type="text" class="pure-input-1" placeholder="登录名">
+        <input type="text" class="pure-input-1" placeholder="真实姓名  必填项" ng-model="user.name" required="required" >
+        <input type="text" class="pure-input-1" placeholder="登录名  必填项" ng-model="user.loginName"  required="required" >
     </fieldset>
     <div class="pure-g">
 	    <div class="pure-u-1-2">
-		    <button type="submit" class="pure-button pure-input-1 pure-button-primary">注 册</button>
+		    <button type="submit" class="pure-button pure-input-1 pure-button-primary" ng-click="registerSubmit()">注 册</button>
 		</div>
 		<div class="pure-u-1-2">
-		    <button type="submit" class="pure-button pure-input-1 pure-button-primary" ng-click="gologinForm()">登录</button>
+		    <button type="button" class="pure-button pure-input-1 pure-button-primary" ng-click="gologinForm()">登录</button>
 		 </div>
     </div>
 

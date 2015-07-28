@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50525
 File Encoding         : 65001
 
-Date: 2015-07-26 20:44:21
+Date: 2015-07-28 23:13:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -84,7 +84,7 @@ CREATE TABLE `tb_user` (
   `loginName` varchar(50) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `登录名` (`loginName`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of tb_user
@@ -99,3 +99,7 @@ INSERT INTO `tb_user` VALUES ('12', 'sssssssssss', '1', 'job', '1990-09-23', '20
 INSERT INTO `tb_user` VALUES ('14', 'sssssssssss', '1', 'job', '1990-09-23', '2015-06-23', '4QrcOUm6Wau+VuBX8g+IPg==', 'gys');
 INSERT INTO `tb_user` VALUES ('16', 'r', '1', 'd', '1990-05-23', '2015-06-25', '4QrcOUm6Wau+VuBX8g+IPg==', 'guoyansiii');
 INSERT INTO `tb_user` VALUES ('17', 'd', '1', 'd', '1990-09-07', '2014-03-25', '4QrcOUm6Wau+VuBX8g+IPg==', 'd');
+INSERT INTO `tb_user` VALUES ('18', '郭延思', '0', 'web前端', '1990-09-07', '2014-06-23', '4QrcOUm6Wau+VuBX8g+IPg==', 'guoyansi123');
+INSERT INTO `tb_user` VALUES ('19', '郭延思', '0', 'web前端', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'guoyansi1.23');
+INSERT INTO `tb_user` VALUES ('20', '郭延思', '0', '', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'guoyansi1.2.3');
+INSERT INTO `tb_user` VALUES ('21', '郭延思', '0', '', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'guoyansi1.2.3.');

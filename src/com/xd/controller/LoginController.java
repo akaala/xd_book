@@ -30,20 +30,16 @@ public class LoginController {
 		String result="";
 		System.out.println("loginName:>>>>>>>>>>>>>>>>>>>>>>>:"+user.getLoginName());
 		System.out.println("password>>>>>>>>>>>>>>>>>>>>>>>>>:"+user.getPassword());
-		/*int i=service.getUserCount(user);
+		int i=service.getUserCount(user);
 		if(i==1){
 			result="success";
 		}else {
 			result="error";
-		}*/
+		}
 		return result;		
 	}
-	@RequestMapping(params="it=register",method=RequestMethod.GET)
-	public String getRegisterPage(Model model){
-		model.addAttribute("depart",userService.getDepart());
-		return "login/register";
-	}
-   @RequestMapping(params="it=doRegister",method=RequestMethod.POST)
+
+   @RequestMapping(params="action=doRegister",method=RequestMethod.POST)
 	@ResponseBody
   public String doRegister(User user,HttpServletResponse response){
 		System.out.println("name:>>>>>>>>>>>>>>>"+user.getName());
