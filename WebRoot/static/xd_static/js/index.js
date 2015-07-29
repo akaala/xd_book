@@ -1,5 +1,5 @@
-var xdModule=angular.module("xdModule",['ngRoute']);
-xdModule.config(['$routeProvider',function($routeProvider){
+var xdModule=angular.module("xdModule",['ui.router']);
+/*xdModule.config(['$routeProvider',function($routeProvider){
 	$routeProvider.when("/list",{
 		templateUrl:"book/list.html",
 		controller:"BookListController"
@@ -9,8 +9,17 @@ xdModule.config(['$routeProvider',function($routeProvider){
 	}) .otherwise({
 		redirectTo: '/list'
 	});
-}]);
-
+}]);*/
+xdModule.config(function($stateProvider,$urlRouterProvider){
+	$urlRouterProvider.when("","/list");
+	$stateProvider.state("list",{
+		url:"/list",
+		templateUrl: "book/list.html"
+	}).state("detail",{
+		url:"/detail",
+		templateUrl: "book/detail.html"
+	});
+});
 
 
 xdModule.controller("BookListController",function($scope){

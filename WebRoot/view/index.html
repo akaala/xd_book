@@ -7,7 +7,8 @@
 		<link type="text/css" rel="stylesheet" href="../static/xd_static/css/index.css" />
 		<script type="text/javascript" src="../static/uiFrame/js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="../static/uiFrame/js/angular.min-1.4.3.js"></script>
-		<script type="text/javascript" src="../static/uiFrame/js/angular-route.min-1.4.3.js"></script>
+		<!-- <script type="text/javascript" src="../static/uiFrame/js/angular-route.min-1.4.3.js"></script> -->
+		<script type="text/javascript" src="../static/uiFrame/js/angular-ui-router.min.js"></script>
 		<script type="text/javascript" src="../static/xd_static/js/index.js"></script>
 	</head>
 	<body>
@@ -19,12 +20,12 @@
 				<li><a class="xd-menu-text">书籍管理</a></li>
 				<li><a class="xd-menu-text">借阅管理</a></li>
 				<li><a class="xd-menu-text">修改资料</a></li>
-				<li><a class="xd-menu-text" href="#/list">图书list</a></li>
-				<li><a class="xd-menu-text" href="#/detail">图书detail</a></li>
+				<li ui-sref="list" ><a class="xd-menu-text"  href="">图书list</a></li>
+				<li ui-sref="detail" ><a class="xd-menu-text" href="">图书detail</a></li>
 			</ul>
 		</div>
 		<div class="xd-right">
-			<div ng-view></div>
+			<div ui-view=""></div>
 		</div>
 	</body>
 </html>
