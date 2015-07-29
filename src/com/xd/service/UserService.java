@@ -50,7 +50,7 @@ public class UserService {
 		User u=new User();
 		boolean result=false;
 		u.setLoginName(user.getLoginName());
-		int i=userDao.getUserCount(user);
+		int i=userDao.getUserCount(u);
 		if(i>=1){
 			result=false;//该登录名不可用
 		}else{
@@ -112,17 +112,25 @@ private String insertUser(User user){
 	public String saveUser(User user) {
 		int i = 0;
 		String result = "";
-		boolean b=checkLoginName(user);
-		if(b){//登陆名可用
-			if (user.getId() == 0) {// 插入
-				result=insertUser(user);
-			}
-			else {// 更新
-				result=updateUser(user);
-			}
-		}else {//登录名被占用
-			result="该登陆名被占用!";
+		if(user.getName().equals("")||user.getName()==null){
+			result="请填写真实姓名";
+		}else if(user.getLoginName().equals("")||user.getLoginName()==null) {
+			result="请填写登录名";
 		}
+		else {
+			boolean b=checkLoginName(user);
+			if(b){//登陆名可用
+				if (user.getId() == 0) {// 插入
+					result=insertUser(user);
+				}
+				else {// 更新
+					result=updateUser(user);
+				}
+			}else {//登录名被占用
+				result="该登陆名被占用!";
+			}
+		}
+		
 		return result;
 	}
 

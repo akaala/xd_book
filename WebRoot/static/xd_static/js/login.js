@@ -2,6 +2,15 @@ $(function(){
 	 $(".xd_login_ppt").gysPPT({width:"100%",height:"100%"});
 });
 var loginModule=angular.module("loginModule",[]);
+//注册一个获取部门的服务
+loginModule.factory("getDepart",["$http",function($http){
+	//var doRequest=function(){
+		return $http.get("login.it?action=getDepart");
+	//}
+	//return doRequest();
+}]);
+
+
 //登陆控制器
 loginModule.controller("loginController",function($scope){
 	$scope.user={loginName:"",password:""};
@@ -36,7 +45,7 @@ $scope.goRegisterForm=function(){
 });
 
 //注册控制器
-loginModule.controller("registerController",function($scope){
+loginModule.controller("registerController",function($scope,getDepart){
 	$scope.user={
 			name:"",
 			deptId:0,
@@ -46,31 +55,61 @@ loginModule.controller("registerController",function($scope){
 			entry:""
 	};
 	
-	
+	getDepart.success(function(data){
+		$scope.departs=data;
+		$scope.user.deptId=data[0].id;
+	}).error(function(){
+		alert("连接服务器失败!");
+	});
 	$scope.gologinForm=function(){
 		$(".register-form-box").animate({left:"-1000px"});
 		$(".login-form-box").animate({left:"50%"});
 	}
-	$scope.selectDeptChange=function(){
-		
-	}
+	
 	$scope.registerSubmit=function(){
-		if($scope.user.name==""){
+		if(!$scope.user.name){
+			//$scope.notice.message="真实姓名是必填项";
+			
+			//$scope.$apply(function() {
+	            $scope.message="真实姓名是必填项";
+	       // });
+			
+			
+			
+			
+			
 			return false;
-		}else if($scope.user.loginName==""){
+		}else if(!$scope.user.loginName){
+			//$scope.notice.message="登录名是必填项";
+			//$scope.$apply(function() {
+	            $scope.message="登录名是必填项";
+	       // });
+			
+			
 			return false;
 		}
-		
+		$scope.message="";
 		$.ajax({
 			url:"login.it?action=doRegister",
 			data:$scope.user,
 			type:"post"
 		}).done(function(data){
-			alert(data);
+           // $scope.$apply(function(){
+            	 $scope.message=data;//alert(123);
+            	 $scope.$apply();
+           // });
 		}).fail(function(){
 			alert("服务器连接失败!")
 		});
 	}
+	/*$scope.$watch("notice.message",function(){
+		$scope.$apply(function() {
+            $scope.time = new Date();
+        });
+	})*/
+	
+	
+	
 	
 	
 	

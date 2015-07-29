@@ -50,14 +50,11 @@
         <input type="text" class="pure-input-1" ng-model="user.job" placeholder="职位">
         <input type="text" class="pure-input-1" ng-model="user.birth" placeholder="出生日期 格式:1990-09-07">
         <input type="text" class="pure-input-1" ng-model="user.entry" placeholder="入职时间 格式:2014-09-23">
-        <select class="pure-input-1" style="height:2.6em" ng-model="user.deptId" ng-change="selectDeptChange()">
-        	<option value="0" ng-selected="true">==部门==</option>
-        	<option value="1">研发部</option>
-        	<option value="2">工程部</option>
-        	<option value="3">综管部</option>
-        </select>
+       <select class="pure-input-1" style="height:2.6em" ng-options="option.id as option.name for option in departs" ng-model="user.deptId"></select>
     </fieldset>
-
+    
+    
+    <p class="loginNotice"><span>*</span><span>{{message}}</span></p>
     <fieldset class="pure-group">
         <input type="text" class="pure-input-1" placeholder="真实姓名  必填项" ng-model="user.name" required="required" >
         <input type="text" class="pure-input-1" placeholder="登录名  必填项" ng-model="user.loginName"  required="required" >

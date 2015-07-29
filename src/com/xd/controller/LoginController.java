@@ -47,9 +47,14 @@ public class LoginController {
 		return result;
 	}
 	
-	@RequestMapping(params="it=registerInit",method=RequestMethod.GET)
+	@RequestMapping(params="action=getDepart",method=RequestMethod.GET)
 	public @ResponseBody List<Department> getDepart(){
-		return userService.getDepart();
+		List<Department> list=userService.getDepart();
+		Department d=new Department();
+		d.setId(0);
+		d.setName("==请选择==");
+		list.add(0,d);
+		return list;
 	}
 
 	
