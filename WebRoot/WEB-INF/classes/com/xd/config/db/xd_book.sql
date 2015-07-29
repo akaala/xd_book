@@ -2,21 +2,21 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost_3306
-Source Server Version : 50525
+Source Server Version : 50519
 Source Host           : localhost:3306
 Source Database       : xd_book
 
 Target Server Type    : MYSQL
-Target Server Version : 50525
+Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2015-07-28 23:13:23
+Date: 2015-07-29 14:15:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `tb_book`
+-- Table structure for tb_book
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_book`;
 CREATE TABLE `tb_book` (
@@ -36,7 +36,7 @@ CREATE TABLE `tb_book` (
 INSERT INTO `tb_book` VALUES ('T123', 'java编程思想', '诸葛亮', '28.50', '机械工业出版社', '1');
 
 -- ----------------------------
--- Table structure for `tb_department`
+-- Table structure for tb_department
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_department`;
 CREATE TABLE `tb_department` (
@@ -53,7 +53,7 @@ INSERT INTO `tb_department` VALUES ('2', '市场部');
 INSERT INTO `tb_department` VALUES ('3', '财务部');
 
 -- ----------------------------
--- Table structure for `tb_manager`
+-- Table structure for tb_manager
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_manager`;
 CREATE TABLE `tb_manager` (
@@ -70,7 +70,7 @@ CREATE TABLE `tb_manager` (
 INSERT INTO `tb_manager` VALUES ('4', '3');
 
 -- ----------------------------
--- Table structure for `tb_user`
+-- Table structure for tb_user
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE `tb_user` (
@@ -84,7 +84,7 @@ CREATE TABLE `tb_user` (
   `loginName` varchar(50) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `登录名` (`loginName`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of tb_user
@@ -103,3 +103,7 @@ INSERT INTO `tb_user` VALUES ('18', '郭延思', '0', 'web前端', '1990-09-07',
 INSERT INTO `tb_user` VALUES ('19', '郭延思', '0', 'web前端', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'guoyansi1.23');
 INSERT INTO `tb_user` VALUES ('20', '郭延思', '0', '', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'guoyansi1.2.3');
 INSERT INTO `tb_user` VALUES ('21', '郭延思', '0', '', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'guoyansi1.2.3.');
+INSERT INTO `tb_user` VALUES ('22', 'dfd', '0', '', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'fdf');
+INSERT INTO `tb_user` VALUES ('23', 'fdf', '0', '', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'fdfd');
+INSERT INTO `tb_user` VALUES ('28', 'e', '0', '', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'e');
+INSERT INTO `tb_user` VALUES ('29', 'd', '0', '', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'dd');
