@@ -1,30 +1,10 @@
-var xdModule=angular.module("xdModule",['ui.router']);
-/*xdModule.config(['$routeProvider',function($routeProvider){
-	$routeProvider.when("/list",{
-		templateUrl:"book/list.html",
-		controller:"BookListController"
-	}).when("/detail",{
-		templateUrl:"login/list.html",
-		controller:"BookDetailController"
-	}) .otherwise({
-		redirectTo: '/list'
-	});
-}]);*/
-xdModule.config(function($stateProvider,$urlRouterProvider){
-	$urlRouterProvider.when("","/list");
-	$stateProvider.state("list",{
-		url:"/list",
-		templateUrl: "book/list.html"
-	}).state("detail",{
-		url:"/detail",
-		templateUrl: "book/detail.html"
-	});
-});
-
-
-xdModule.controller("BookListController",function($scope){
-	$scope.pageName="首页第一例子";
-});
-xdModule.controller("BookDetailController",function($scope){
-	$scope.pageName="段元鑫";
+var homeModule=angular.module("xdModule",[]);
+homeModule.controller("indexController",function($scope){
+	$scope.clickMenuItem=function(i){
+		$(".xd-menu-box").find("li").removeClass("xd-menu-item-hover");
+		$(".xd-menu-box").find("li").eq(i).addClass("xd-menu-item-hover");
+		var rel=$(".xd-menu-box .xd-menu-item-hover .xd-menu-text").attr("rel");
+		$scope.src=rel;
+		
+	}
 });

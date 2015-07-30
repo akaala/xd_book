@@ -3,29 +3,25 @@
 	<head>
 		<meta charset="utf-8" />
 		<title></title>
-		<link type="text/css" rel="stylesheet" href="../static/uiFrame/css/pure-min.css" />
+	<!-- 	<link type="text/css" rel="stylesheet" href="../static/uiFrame/css/pure-min.css" /> -->
 		<link type="text/css" rel="stylesheet" href="../static/xd_static/css/index.css" />
 		<script type="text/javascript" src="../static/uiFrame/js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="../static/uiFrame/js/angular.min-1.4.3.js"></script>
-		<!-- <script type="text/javascript" src="../static/uiFrame/js/angular-route.min-1.4.3.js"></script> -->
-		<script type="text/javascript" src="../static/uiFrame/js/angular-ui-router.min.js"></script>
-		<script type="text/javascript" src="../static/xd_static/js/index.js"></script>
+		<script type="text/javascript" src="../static/xd_static/js/index.js"></script> 
 	</head>
-	<body>
+	<body ng-controller="indexController">
 		<div class="xd-left">
 			<h3 class="xd-menu-title">菜单</h3>
 			<ul class="xd-menu-box">
-				<li><a class="xd-menu-text">人员管理</a></li>
-				<li><a class="xd-menu-text">部门管理</a></li>
-				<li><a class="xd-menu-text">书籍管理</a></li>
-				<li><a class="xd-menu-text">借阅管理</a></li>
-				<li><a class="xd-menu-text">修改资料</a></li>
-				<li ui-sref="list" ><a class="xd-menu-text"  href="">图书list</a></li>
-				<li ui-sref="detail" ><a class="xd-menu-text" href="">图书detail</a></li>
+				<li ng-click="clickMenuItem(0)"><a class="xd-menu-text" rel="user/userList.html">人员管理</a></li>
+				<li ng-click="clickMenuItem(1)"><a class="xd-menu-text">部门管理</a></li>
+				<li ng-click="clickMenuItem(2)"><a class="xd-menu-text">书籍管理</a></li>
+				<li ng-click="clickMenuItem(3)"><a class="xd-menu-text">借阅管理</a></li>
+				<li ng-click="clickMenuItem(4)"><a class="xd-menu-text">修改资料</a></li>
 			</ul>
 		</div>
 		<div class="xd-right">
-			<div ui-view=""></div>
+			<iframe width="100%" height="100%" frameborder="0" src='{{src}}'></iframe>
 		</div>
 	</body>
 </html>

@@ -98,4 +98,23 @@ public class UserDao{
 		}
 		return list;
 	}
+	
+	/**
+	 * 获取用户list
+	 * @param user
+	 * @return
+	 */
+	public List<User> getUserList(User user){
+		List<User> list=null;
+		SqlSession session=getSession();
+		try {
+			list=session.selectList("user.queryUser",user);
+		} catch (Exception e) {
+			System.out.println("userDao层getUserList发生异常.....");
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return list;
+	}
 }

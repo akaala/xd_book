@@ -17,8 +17,10 @@ ul,li{
 .xd-right {
 	position: absolute;
 	right: 0;
-	left: 170px;
+	left: 160px;
+	bottom:0;
 	min-width: 900px;
+	top:0;
 }
 .xd-menu-title {
 	color: #fff;
@@ -40,7 +42,8 @@ ul,li{
 	display: block;
 	cursor: pointer;
 }
-.xd-menu-text:hover {
+.xd-menu-text:hover,
+.xd-menu-item-hover {
 	background-color: #333;
 	color: #fff;
 }

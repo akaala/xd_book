@@ -73,6 +73,11 @@ public class UserService {
 		}
 		return userDao.getUserCount(user);
 	}
+	/**
+	 * 插入人员
+	 * @param user
+	 * @return
+	 */
 private String insertUser(User user){
 	String result="";
 	String md5Password=getMD5String("123456");
@@ -91,6 +96,11 @@ private String insertUser(User user){
 	}
 	return result;
 }
+/**
+ * 更新人员信息
+ * @param user
+ * @return
+ */
 	private String updateUser(User user){
 		String result="";
 		int i=0;
@@ -139,6 +149,10 @@ private String insertUser(User user){
 	 */
 	public List<Department> getDepart(){
 		return userDao.getDepart();
+	}
+	
+	public List<User> getUserList(User user){
+		return userDao.getUserList(user);
 	}
 	
 }

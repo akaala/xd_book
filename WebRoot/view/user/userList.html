@@ -1,0 +1,21 @@
+<!-- <ul>
+  <li ng-repeat="u in userList">{{u.name}}</li>
+</ul> -->
+<table class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>姓名</th>
+            <th>职位</th>
+            <th>部门</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="u in userList">
+            <td>{{u.name}}</td>
+            <td>{{u.job}}</td>
+            <td>{{u.departId}}</td>
+        </tr>
+
+    </tbody>
+</table>
