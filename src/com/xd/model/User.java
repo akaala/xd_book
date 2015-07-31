@@ -1,6 +1,6 @@
 package com.xd.model;
 
-public class User {
+public class User extends BaseModel{
 	private int id;
 	private String name;
 	private int departId;

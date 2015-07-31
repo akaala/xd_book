@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="userManagerModule">
+  <head>
+    <title>userList.html</title>
+	
+<link type="text/css" rel="stylesheet" href="../../static/uiFrame/css/pure-min.css" />
+<link type="text/css" rel="stylesheet" href="../../static/xd_static/css/userManager.css" />
+		<script type="text/javascript" src="../../static/uiFrame/js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="../../static/uiFrame/js/angular.min-1.4.3.js"></script> 
+	<script type="text/javascript" src="../../static/xd_static/js/userManager.js"></script>
+  </head>
+  <body ng-controller="userListController">
+  <form class="pure-form">
+    <fieldset>
+        <legend>搜索</legend>
+
+        <input type="text" placeholder="姓名">
+  <select>
+  <option>==部门查询==</option>
+            <option>AL</option>
+            <option>CA</option>
+            <option>IL</option>
+        </select>
+
+  
+
+        <button type="submit" class="pure-button pure-button-primary">查询</button>
+    </fieldset>
+</form>
+<table class="pure-table pure-table-bordered xd-lsit-table">
+    <thead>
+        <tr>
+        	<th>序号</th>
+            <th>姓名</th>
+            <th>职位</th>
+            <th>部门</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="u in userList">
+        <td>{{$index+1}}</td>
+            <td>{{u.name}}</td>
+            <td>{{u.job}}</td>
+            <td>{{u.deptName}}</td>
+        </tr>
+
+    </tbody>
+</table>
+  </body>
+</html>

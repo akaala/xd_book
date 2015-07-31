@@ -1,8 +1,11 @@
-ul,li{
-	list-style: none;
+body{
 	margin: 0;
 	padding: 0;
 }
+ul,li{
+	list-style: none;
+}
+
 .xd-left,.xd-right {
 	top: 0;
 }
@@ -21,6 +24,7 @@ ul,li{
 	bottom:0;
 	min-width: 900px;
 	top:0;
+	overflow: hidden;
 }
 .xd-menu-title {
 	color: #fff;
@@ -43,7 +47,7 @@ ul,li{
 	cursor: pointer;
 }
 .xd-menu-text:hover,
-.xd-menu-item-hover {
+.xdMenuItemHover {
 	background-color: #333;
 	color: #fff;
 }

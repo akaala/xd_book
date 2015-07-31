@@ -21,9 +21,10 @@
 			<if test="password!=null and password !='' ">
 				and password=#{password}
 			</if>
-		
 		</where>
-		 
+		 <if test="pageSize>0 and pageNumber>0">
+				limit #{pageStart},#{pageSize}
+			</if>
     </select>
     <select id="getUserCount"  parameterType="user" resultType="int">
     	select count(*) from tb_user 
