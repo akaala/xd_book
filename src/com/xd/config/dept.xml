@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dept">
+<!-- 查询部门 -->
+    <select id="querydept" parameterType="department" resultType="department">
+        select * from tb_department	
+    </select>
+<!-- 插入部门 -->
+    <insert id="insertDept" parameterType="department" useGeneratedKeys="true" keyProperty="id" >
+    	insert into tb_department
+    	(name)
+    	values
+    	(#{name})
+    </insert>
+    <!-- 修改部门 -->
+     <update id="updateDept" parameterType="department">
+    	update into set 
+    	name=#{name}
+    	where id=#{id}
+    </update> 
+   
+    <!-- 删除部门 -->
+    <delete id="deleteDept" parameterType="department">
+    	delete from tb_department where id=#{id}
+    </delete>
+    <!-- 查询部门是不有人 -->
+    <select id="checkUserInDept" parameterType="department" resultType="int">
+    	select count(*) from tb_user where departId=#{id}
+    </select>
+  
+</mapper>

@@ -22,7 +22,7 @@
 				and password=#{password}
 			</if>
 		</where>
-		 <if test="pageSize>0 and pageNumber>0">
+		 <if test="pageSize>0 and pageStart>-1">
 				limit #{pageStart},#{pageSize}
 			</if>
     </select>
@@ -65,5 +65,13 @@
     </update> 
     <select id="getDepart" resultType="department">
     	select id,name from tb_department;
+    </select>
+    <!-- 删除用户 -->
+    <delete id="deleteUser" parameterType="user">
+    	delete from tb_user where id=#{id}
+    </delete>
+    <!-- 检查用户是否有未还的书 -->
+    <select id="checkUserForDelete" parameterType="user" resultType="int">
+    select count(*) from tb_book where userId=#{id}
     </select>
 </mapper>

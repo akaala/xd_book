@@ -4,3 +4,58 @@
 .pure-form select{
 	height: 2.6em;
 }
+.xd-search-area{
+	padding:20px;
+}
+.pure-button{
+	font-size: 85%;
+}
+.pure-form legend.currentPage-nav{
+	color:green;
+}
+.pure-table td, .pure-table th{
+	padding:0.3em 1em;
+}
+
+/*分页  */
+.xd_pageList{
+		overflow:hidden;
+		border:1px solid #ccc;
+		border-radius: 5px;
+		padding: 0 10px;
+		font-size: 0;
+		text-align: right;
+		margin: 10px 0 20px 0;
+	}
+	.xd_pageList a,
+	.xd_pageList span{
+		display: block;
+		float: right;
+		padding:6px 10px;
+		font-size: 14px;
+	}
+.xd_pageList .firstPage,
+.xd_pageList .nextPage{
+	border-left:1px solid #ccc;	
+}
+.xd_pageList .firstPage,
+.xd_pageList .upPage,
+.xd_pageList .nextPage,
+.xd_pageList .lastPage{
+	color:#337ab7;
+	border-right:1px solid #ccc;	
+	cursor: pointer;	
+}
+.xd_pageList .firstPage:hover,
+.xd_pageList .upPage:hover,
+.xd_pageList .nextPage:hover,
+.xd_pageList .lastPage:hover{
+	text-decoration: underline;
+}
+
+
+.xd_pageList .currentPage,
+.xd_pageList .totalpage{
+color:#c56a10;
+
+	}

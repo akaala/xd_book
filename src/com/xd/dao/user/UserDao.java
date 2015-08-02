@@ -16,16 +16,6 @@ public class UserDao{
 		SqlSessionDao sqlSessionDao=new SqlSessionDao();
 		return sqlSessionDao.session;
 	}
-	
-	/*private SqlSession session=null;
-	public UserDao(){
-		session=(new SqlSessionDao()).session;
-	}*/
-	
-	/*public static void main(String[] args) {
-		UserDao loginDao=new UserDao();
-		System.out.println("获取的人数:"+loginDao.getUserCount(null));
-	}*/
 	/**
 	 * 获取人员数量
 	 * @param user
@@ -73,6 +63,7 @@ public class UserDao{
 		SqlSession session=getSession();
 		try {
 			id=session.update("user.updateUser",user);
+			session.commit();
 		} catch (Exception e) {
 			System.out.println("Dao层updateUser方法异常......");
 			e.printStackTrace();
@@ -117,4 +108,45 @@ public class UserDao{
 		}
 		return list;
 	}
+	
+	/**
+	 * 检查用户是否有未接的书
+	 * @param user
+	 * @return 未接图书数量
+	 */
+	public int checkUserForDelete(User user){
+		int i=-1;
+		SqlSession session=getSession();
+		try {
+			i=session.selectOne("user.checkUserForDelete",user);
+		} catch (Exception e) {
+			System.out.println("userDao层checkUserForDelete发生异常.....");
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return i;
+	}
+	
+	
+/**
+ * 删除用户
+ * @param user
+ * @return 删除id
+ */
+	public int deleteUser(User user){
+		int i=0;
+		SqlSession session=getSession();
+		try {
+			i=session.delete("user.deleteUser", user);
+			session.commit();
+		} catch (Exception e) {
+			System.out.println("userDao层deleteUser发生异常.....");
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return i;
+	}
+	
 }

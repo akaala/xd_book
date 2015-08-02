@@ -3,7 +3,7 @@ package com.xd.model;
 public class BaseModel {
 	private int pageSize;//每页数据
 	private int totalCount;//总条数
-	private int pageNumber;//页面
+	private int currentPage;//当前页
 	
 	private int pageStart;
 	public int getPageSize() {
@@ -18,17 +18,17 @@ public class BaseModel {
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 	}
-	public int getPageNumber() {
-		return pageNumber;
+	public int getcurrentPage() {
+		return currentPage;
 	}
-	public void setPageNumber(int pageNumber) {
-		this.pageNumber = pageNumber;
+	public void setcurrentPage(int currentPage) {
+		this.currentPage = currentPage;
 	}
 	public int getPageStart() {
 		return pageStart;
 	}
-	public void setPageStart() {
-		this.pageStart = (this.pageNumber-1)*this.pageSize;
+	public void setPageStart(int currentPage) {
+		this.pageStart = (currentPage-1)*this.pageSize;
 	}
 	
 	

@@ -7,9 +7,11 @@ homeModule.controller("indexController",function($scope){
 
 $(function(){
 	$(".xd-menu-box li").click(function(){
-		$(this).siblings().removeClass("xdMenuItemHover");
-		$(this).addClass("xdMenuItemHover");
 		var src=$("a.xd-menu-text",this).attr("rel");
+		if(!src)
+			return;
+		$(this).siblings().removeClass("xdMenuItemHover");
+		$(this).addClass("xdMenuItemHover");		
 		$("#mainContentIframe").attr("src",src);
 	})
 });
