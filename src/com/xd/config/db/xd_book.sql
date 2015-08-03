@@ -2,21 +2,21 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost_3306
-Source Server Version : 50525
+Source Server Version : 50519
 Source Host           : localhost:3306
 Source Database       : xd_book
 
 Target Server Type    : MYSQL
-Target Server Version : 50525
+Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2015-08-02 23:55:58
+Date: 2015-08-03 18:02:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `tb_book`
+-- Table structure for tb_book
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_book`;
 CREATE TABLE `tb_book` (
@@ -36,7 +36,7 @@ CREATE TABLE `tb_book` (
 INSERT INTO `tb_book` VALUES ('T123', 'java编程思想', '诸葛亮', '28.50', '机械工业出版社', '30');
 
 -- ----------------------------
--- Table structure for `tb_borrow`
+-- Table structure for tb_borrow
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_borrow`;
 CREATE TABLE `tb_borrow` (
@@ -54,7 +54,7 @@ CREATE TABLE `tb_borrow` (
 INSERT INTO `tb_borrow` VALUES ('1', '2015-08-02 17:37:49', '0', '0', '0');
 
 -- ----------------------------
--- Table structure for `tb_department`
+-- Table structure for tb_department
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_department`;
 CREATE TABLE `tb_department` (
@@ -71,7 +71,7 @@ INSERT INTO `tb_department` VALUES ('2', '市场部');
 INSERT INTO `tb_department` VALUES ('3', '财务部');
 
 -- ----------------------------
--- Table structure for `tb_manager`
+-- Table structure for tb_manager
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_manager`;
 CREATE TABLE `tb_manager` (
@@ -87,7 +87,7 @@ CREATE TABLE `tb_manager` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `tb_user`
+-- Table structure for tb_user
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE `tb_user` (
@@ -99,6 +99,8 @@ CREATE TABLE `tb_user` (
   `entry` date DEFAULT NULL COMMENT '入职时间',
   `password` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
   `loginName` varchar(50) COLLATE utf8_bin NOT NULL,
+  `status` int(11) DEFAULT '0' COMMENT '0:未审核,1:已审核',
+  `manager` int(11) DEFAULT '0' COMMENT '0:普通职员,1:管理员',
   PRIMARY KEY (`id`),
   UNIQUE KEY `登录名` (`loginName`) USING HASH
 ) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -106,24 +108,23 @@ CREATE TABLE `tb_user` (
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES ('30', '郭延思', '1', '架构师', '1990-09-07', '2014-06-23', '4QrcOUm6Wau+VuBX8g+IPg==', 'guoyansi');
-INSERT INTO `tb_user` VALUES ('44', '1', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '1');
-INSERT INTO `tb_user` VALUES ('45', '2', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '2');
-INSERT INTO `tb_user` VALUES ('46', '3', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '3');
-INSERT INTO `tb_user` VALUES ('47', '44444', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '5');
-INSERT INTO `tb_user` VALUES ('48', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '6');
-INSERT INTO `tb_user` VALUES ('49', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '7');
-INSERT INTO `tb_user` VALUES ('50', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '8');
-INSERT INTO `tb_user` VALUES ('51', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'asdfasdf');
-INSERT INTO `tb_user` VALUES ('52', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '所得税');
-INSERT INTO `tb_user` VALUES ('53', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '热热');
-INSERT INTO `tb_user` VALUES ('55', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋');
-INSERT INTO `tb_user` VALUES ('56', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费');
-INSERT INTO `tb_user` VALUES ('57', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费大道');
-INSERT INTO `tb_user` VALUES ('58', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费大道天天');
-INSERT INTO `tb_user` VALUES ('59', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费大道天天谁谁谁');
-INSERT INTO `tb_user` VALUES ('60', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费大道天天谁谁谁撒发生');
-INSERT INTO `tb_user` VALUES ('61', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费大道天天谁谁谁撒发生啊沙发上');
-INSERT INTO `tb_user` VALUES ('62', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'werewolf');
-INSERT INTO `tb_user` VALUES ('63', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '许');
-INSERT INTO `tb_user` VALUES ('64', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '许大放送');
+INSERT INTO `tb_user` VALUES ('30', '郭延思', '1', '架构师', '1990-09-07', '2014-06-23', '4QrcOUm6Wau+VuBX8g+IPg==', 'guoyansi', '1', '1');
+INSERT INTO `tb_user` VALUES ('44', '1', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '1', '1', '0');
+INSERT INTO `tb_user` VALUES ('45', '2', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '2', '1', '1');
+INSERT INTO `tb_user` VALUES ('46', '3', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '3', '1', '1');
+INSERT INTO `tb_user` VALUES ('47', '44444', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '5', '0', '0');
+INSERT INTO `tb_user` VALUES ('48', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '6', '0', '0');
+INSERT INTO `tb_user` VALUES ('49', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '7', '0', '0');
+INSERT INTO `tb_user` VALUES ('50', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '8', '0', '0');
+INSERT INTO `tb_user` VALUES ('51', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'asdfasdf', '0', '0');
+INSERT INTO `tb_user` VALUES ('52', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '所得税', '0', '0');
+INSERT INTO `tb_user` VALUES ('53', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '热热', '0', '0');
+INSERT INTO `tb_user` VALUES ('55', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋', '0', '0');
+INSERT INTO `tb_user` VALUES ('56', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费', '0', '0');
+INSERT INTO `tb_user` VALUES ('57', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费大道', '0', '0');
+INSERT INTO `tb_user` VALUES ('58', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费大道天天', '1', '0');
+INSERT INTO `tb_user` VALUES ('59', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费大道天天谁谁谁', '0', '0');
+INSERT INTO `tb_user` VALUES ('60', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费大道天天谁谁谁撒发生', '0', '0');
+INSERT INTO `tb_user` VALUES ('61', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费大道天天谁谁谁撒发生啊沙发上', '0', '0');
+INSERT INTO `tb_user` VALUES ('62', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'werewolf', '1', '0');
+INSERT INTO `tb_user` VALUES ('63', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '许', '0', '0');
