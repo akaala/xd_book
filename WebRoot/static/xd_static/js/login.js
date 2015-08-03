@@ -48,7 +48,7 @@ $scope.goRegisterForm=function(){
 loginModule.controller("registerController",function($scope,getDepart){
 	$scope.user={
 			name:"",
-			deptId:0,
+			departId:0,
 			job:"",
 			loginName:"",
 			birth:"",
@@ -57,7 +57,8 @@ loginModule.controller("registerController",function($scope,getDepart){
 	
 	getDepart.success(function(data){
 		$scope.departs=data;
-		$scope.user.deptId=data[0].id;
+		$scope.user.departId=$scope.departs[0].id;
+		//$scope.$apply();
 	}).error(function(){
 		alert("连接服务器失败!");
 	});
@@ -67,50 +68,23 @@ loginModule.controller("registerController",function($scope,getDepart){
 	}
 	
 	$scope.registerSubmit=function(){
-		if(!$scope.user.name){
-			//$scope.notice.message="真实姓名是必填项";
-			
-			//$scope.$apply(function() {
-	            $scope.message="真实姓名是必填项";
-	       // });
-			
-			
-			
-			
-			
+		if(!$scope.user.name){		
+	            $scope.message="真实姓名是必填项";	    
 			return false;
-		}else if(!$scope.user.loginName){
-			//$scope.notice.message="登录名是必填项";
-			//$scope.$apply(function() {
+		}else if(!$scope.user.loginName){			
 	            $scope.message="登录名是必填项";
-	       // });
-			
-			
-			return false;
+				return false;
 		}
 		$scope.message="";
 		$.ajax({
 			url:"login.it?action=doRegister",
 			data:$scope.user,
 			type:"post"
-		}).done(function(data){
-           // $scope.$apply(function(){
-            	 $scope.message=data;//alert(123);
-            	 $scope.$apply();
-           // });
+		}).done(function(data){           
+            	 $scope.message=data;
+            	 $scope.$apply();         
 		}).fail(function(){
 			alert("服务器连接失败!")
 		});
 	}
-	/*$scope.$watch("notice.message",function(){
-		$scope.$apply(function() {
-            $scope.time = new Date();
-        });
-	})*/
-	
-	
-	
-	
-	
-	
 });

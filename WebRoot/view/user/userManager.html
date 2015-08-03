@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html ng-app="userManagerModule">
   <head>
-    <title>userList.html</title>
+    <title>用户管理</title>
 	
 <link type="text/css" rel="stylesheet" href="../../static/uiFrame/css/pure-min.css" />
-<link type="text/css" rel="stylesheet" href="../../static/xd_static/css/userManager.css" />
+<link type="text/css" rel="stylesheet" href="../../static/xd_static/css/index.css" />
 		<script type="text/javascript" src="../../static/uiFrame/js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="../../static/uiFrame/js/angular.min-1.4.3.js"></script> 
 	<script type="text/javascript" src="../../static/xd_static/js/userManager.js"></script>
   </head>
   <body ng-controller="userListController">
-  <form class="pure-form">
+  <div class="xd-search-area">
+<form class="pure-form">
     <fieldset>
-        <legend>搜索</legend>
+        <legend class="currentPage-nav">人员管理</legend>
 
-        <input type="text" placeholder="姓名">
-  <select>
-  <option>==部门查询==</option>
+        <input type="text" placeholder="姓名" ng-model="search.name">
+ 
+   <select ng-options="option.id as option.name for option in depts" ng-model="search.departId"></select>
+  
+<!--    <select>
+			<option>==部门查询==</option>
             <option>AL</option>
             <option>CA</option>
             <option>IL</option>
-        </select>
+        </select> -->
 
   
 
-        <button type="submit" class="pure-button pure-button-primary">查询</button>
+        <button type="button" class="pure-button pure-button-primary" ng-click="serachList()">查询</button>
     </fieldset>
-</form>
+</form> 
+
+
+
+
+</div>
 <table class="pure-table pure-table-bordered xd-lsit-table">
     <thead>
         <tr>
@@ -34,6 +43,7 @@
             <th>姓名</th>
             <th>职位</th>
             <th>部门</th>
+            <td>操作</td>
         </tr>
     </thead>
 
@@ -43,9 +53,21 @@
             <td>{{u.name}}</td>
             <td>{{u.job}}</td>
             <td>{{u.deptName}}</td>
+            <td>
+            	<input type="button" value="删除" ng-click="deleteUser(u.id)" class="pure-button pure-button-primary" />
+            </td>
         </tr>
 
     </tbody>
 </table>
+
+<div class="xd_pageList">		
+		<span class="totalpage">总共:{{page.totalCount}}人</span>	
+		<a class="lastPage" ng-click="clickPageNum(page.lastPage)" >尾页</a>
+		<a class="nextPage"  ng-click="clickPageNum(page.nextPage)">下页</a>
+		<span class="currentPage">{{page.currentPage}}/{{page.totalPage}}页</span>			
+		<a class="upPage"  ng-click="clickPageNum(page.upPage)">上页</a>
+		<a class="firstPage"  ng-click="clickPageNum(page.firstPage)">首页</a>
+	</div>	
   </body>
 </html>

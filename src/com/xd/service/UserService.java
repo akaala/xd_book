@@ -3,7 +3,9 @@ package com.xd.service;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -67,7 +69,7 @@ public class UserService {
 	 */
 	public int getUserCount(User user) {
 		String MD5Password="";
-		if(!user.getPassword().equals("")){
+		if(!"".equals(user.getPassword())&&user.getPassword()!=null){
 			MD5Password=getMD5String(user.getPassword());
 			user.setPassword(MD5Password);
 		}
@@ -152,7 +154,37 @@ private String insertUser(User user){
 	}
 	
 	public List<User> getUserList(User user){
+		user.setPageStart(user.getcurrentPage());
+		
 		return userDao.getUserList(user);
+	}
+	
+	/**
+	 * 删除用户
+	 * @return 删除id
+	 */
+	public Map<String,String> deleteUser(User user){
+		int i=userDao.checkUserForDelete(user);
+		Map<String,String> map=new HashMap<String, String>();
+		if(i==0){//未发现未还书籍,可以删除
+			i=userDao.deleteUser(user);
+			if(i>0){
+				map.put("status", "success");
+				map.put("msg", "删除成功");
+			}else {
+				map.put("status", "error");
+				map.put("msg", "删除失败");
+			}
+			
+		}else if(i>0){//有未还书籍,无法删除
+			map.put("status", "error");
+			map.put("msg", "该成员还有"+i+"书没有还.");
+		}else {
+			System.out.println("查阅是否有未还书籍时异常.....");
+			map.put("status", "error");
+			map.put("msg", "程序出现异常,请联系工作人员.");
+		}
+		return map;
 	}
 	
 }

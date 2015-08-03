@@ -24,19 +24,34 @@ public class UserController {
 	
 	@RequestMapping(params="action=getUserList",method=RequestMethod.GET)
 	@ResponseBody
-	public List<User> getUserList(User user){
+	public Map<String, Object> getUserList(User user){
 		List<User> list=userService.getUserList(user);
-		return list;
+		int totalCount=userService.getUserCount(user);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("users", list);
+		map.put("totalCount", totalCount);
+		map.put("currentPage", user.getcurrentPage());
+		return map;
 	}
 	@RequestMapping(params="action=userManagerInit",method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> userManagerInit(User user){
-		List<User> users=this.getUserList(user);
+		List<User> users=userService.getUserList(user);
 		List<Department> dept=userService.getDepart();
+		int totalCount=userService.getUserCount(user);
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("users", users);
 		map.put("dept", dept);
+		map.put("totalCount", totalCount);
+		map.put("currentPage", user.getcurrentPage());
 		return map;
+	}
+	
+	@RequestMapping(params="action=deleteUser",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,String> deleteUser(User user){
+		 Map<String,String> map=userService.deleteUser(user);
+		 return map;
 	}
 	
 }

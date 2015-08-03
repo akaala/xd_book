@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="loginModule">
 <head>
-<title>登录</title>
+<title>借书系统登录</title>
 <meta charset="UTF-8">
 <meta name="content-type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="../static/uiFrame/css/pure-min.css" />
@@ -23,7 +23,6 @@
       <li><img src="../static/img/5.png" alt="加载中......"/></li>
       <li><img src="../static/img/6.png" alt="加载中......"/></li>
   </ul>
-  <div ng-class="{xd-menu-item-hover:true}"></div>
 <div class="login-form-box" ng-controller="loginController" >
 	<form action="" method="post"  class="pure-form pure-form-aligned"  onSubmit="return false;" >
 		<fieldset>
@@ -51,7 +50,7 @@
         <input type="text" class="pure-input-1" ng-model="user.job" placeholder="职位">
         <input type="text" class="pure-input-1" ng-model="user.birth" placeholder="出生日期 格式:1990-09-07">
         <input type="text" class="pure-input-1" ng-model="user.entry" placeholder="入职时间 格式:2014-09-23">
-       <select class="pure-input-1" style="height:2.6em" ng-options="option.id as option.name for option in departs" ng-model="user.deptId"></select>
+       <select class="pure-input-1" style="height:2.6em" ng-options="option.id as option.name for option in departs" ng-model="user.departId"></select>
     </fieldset>
     
     

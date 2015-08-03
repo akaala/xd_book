@@ -43,16 +43,30 @@
     </bean>  -->
 
 
+
+
 	<!-- HandlerMapping无需配置,Spring MVC可以默认启动 -->
 	<!-- 扩充了注解驱动,可以将请求参数绑定到控制器参数 启用基于annotation的handlerMapping. -->
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
+		
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg>
+					<bean class="java.nio.charset.Charset" factory-method="forName">
+						<constructor-arg value="UTF-8" />
+					</bean>
+				</constructor-arg>
+			</bean>
+		
 		    <bean class="org.springframework.http.converter.StringHttpMessageConverter">
 		    <!-- 控制RequestBody返回值乱码 -->
 		      <property name="supportedMediaTypes" value = "text/plain;charset=UTF-8" />
 		    </bean>
+		    
    		</mvc:message-converters>
 	</mvc:annotation-driven>
+
+
 
 	<!-- 静态资源处理,css,js,imgs -->
 	<mvc:resources location="/static/" mapping="/static/**" />
