@@ -1,17 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="userManagerModule">
   <head>
-    <title>bookManager.html</title>
+    <title>书籍管理</title>
 	
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-    <meta http-equiv="description" content="this is my page">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    
-    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
-
+<link type="text/css" rel="stylesheet" href="../../static/uiFrame/css/pure-min.css" />
+<link type="text/css" rel="stylesheet" href="../../static/xd_static/css/index.css" />
+<script type="text/javascript" src="../../static/uiFrame/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../../static/uiFrame/js/angular.min-1.4.3.js"></script>
+	<script type="text/javascript" src="../../static/xd_static/js/bookManager.js"></script>
   </head>
-  
-  <body>
-    <h1>bookManager</h1>
+  <body ng-controller="bookListController">
+  <div class="xd-search-area">
+<form class="pure-form">
+    <fieldset>
+        <legend class="currentPage-nav">书籍管理</legend>
+        <input type="text" placeholder="书名" ng-model="search.name">
+ 		<input type="text" placeholder="编码" ng-model="search.number">
+        <button type="button" class="pure-button pure-button-primary" ng-click="serachList()">查询</button>
+         <button type="button" class="pure-button pure-button-primary" ng-click="addList()">新增</button>
+    </fieldset>
+</form> 
+
+
+
+
+</div>
+<table class="pure-table pure-table-bordered xd-lsit-table xd-lsit-table-hover">
+    <thead>
+        <tr>
+        	<th>序号</th>
+        	<th>编码</th>
+            <th>书名</th>
+             <th>作者</th>
+             <th>价格</th>
+            <th>出版社</th>
+           	<th>借书人</th>          
+            <td>操作</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="b in bookList">
+        <td>{{$index+1}}</td>
+            <td>{{u.number}}</td>
+            <td>{{u.name}}</td>
+            <td>{{u.author}}</td>
+            <td>{{u.price}}</td>
+            <td>{{u.publisher}}</td>
+            <td>{{u.borrorName}}</td>          
+            <td width="250">
+            	<input type="button" value="删除" ng-click="deleteBook(b.id)" class="pure-button pure-button-primary" />
+            	<input type="button" value="修改" ng-click="updateBook(b.id)" class="button-success pure-button" />
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+<div class="xd_pageList">		
+		<span class="totalpage">总共:{{page.totalCount}}人</span>	
+		<a class="lastPage" ng-click="clickPageNum(page.lastPage)" >尾页</a>
+		<a class="nextPage"  ng-click="clickPageNum(page.nextPage)">下页</a>
+		<span class="currentPage">{{page.currentPage}}/{{page.totalPage}}页</span>			
+		<a class="upPage"  ng-click="clickPageNum(page.upPage)">上页</a>
+		<a class="firstPage"  ng-click="clickPageNum(page.firstPage)">首页</a>
+</div>	
   </body>
 </html>

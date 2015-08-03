@@ -44,6 +44,9 @@
 			<if test="password!=null and password !='' ">
 				and password=#{password}
 			</if>
+			<if test="status !=null and status !='' ">
+				and status=#{status}
+			</if>		
 		</where>
     </select>
     <insert id="insertUser" parameterType="user" useGeneratedKeys="true" keyProperty="id" >
@@ -74,4 +77,21 @@
     <select id="checkUserForDelete" parameterType="user" resultType="int">
     select count(*) from tb_book where userId=#{id}
     </select>
+    <!-- 审核通过 -->
+    <update id="yesUserStatus" parameterType="int">
+    	update tb_user set status=1 WHERE id=#{id};
+    </update>
+     <!-- 取消审核 -->
+    <update id="noUserStatus" parameterType="int">
+    	update tb_user set status=0 WHERE id=#{id};
+    </update>
+    <!-- 设置管理员 -->
+    <update id="setManager" parameterType="int">
+    	update tb_user set manager=1 WHERE id=#{id};
+    </update>
+    <!-- 取消管理员 -->
+    <update id="cancelManager" parameterType="int">
+    	update tb_user set manager=0 WHERE id=#{id};
+    </update>
+    
 </mapper>

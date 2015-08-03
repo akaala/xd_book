@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Service;
 
 import sun.misc.BASE64Encoder;
@@ -75,6 +78,56 @@ public class UserService {
 		}
 		return userDao.getUserCount(user);
 	}
+	
+	/**
+	 * 登录
+	 * 
+	 * @param user
+	 * @return 
+	 */
+	public Map<String, String> doLogin(User user,HttpServletRequest request) {
+		String MD5Password="";
+		Map<String, String> map=new HashMap<String, String>();
+		
+		if("".equals(user.getPassword())||user.getPassword()==null){
+			map.put("status", "error");
+			map.put("msg", "请填写密码!");
+		}else if ("".equals(user.getLoginName())||user.getLoginName()==null) {
+			map.put("status", "error");
+			map.put("msg", "请填写登录名!");
+		}else{
+			MD5Password=getMD5String(user.getPassword());
+			user.setPassword(MD5Password);
+			List<User> list=userDao.getUserList(user);
+			int count=list.size();
+			if(count>1){
+				map.put("status", "error");
+				map.put("msg", "改登录名有多人使用,无法登录,请与管理员联系!");
+			}else if(count==1){
+				int status=list.get(0).getStatus();
+				if(status==1){
+					map.put("status", "success");
+					map.put("msg", "登录成功....");
+					HttpSession session=request.getSession();
+					session.setAttribute("user",list.get(0));
+				}else if (status==0) {
+					map.put("status", "error");
+					map.put("msg", "该账号未通过审核,请与管理员联系");
+				}else {
+					map.put("status", "error");
+					map.put("msg", "该账号状态异常,禁止登录,请速与管理员联系!");
+				}
+			}else if (count==0) {
+				map.put("status", "error");
+				map.put("msg", "登录名或密码错误请重新登录!");
+			}else {
+				map.put("status", "error");
+				map.put("msg", "该账号状态存在异常,请速与管理员联系!");
+			}
+		}
+		return map;
+	}
+	
 	/**
 	 * 插入人员
 	 * @param user
@@ -186,5 +239,77 @@ private String insertUser(User user){
 		}
 		return map;
 	}
+	
+	/**
+	 * 审核通过
+	 * @param id
+	 * @return
+	 */
+	public Map<String, String> yesUserStatus(int id){
+		int i=userDao.yesUserStatus(id);
+		Map<String, String> map=new HashMap<String, String>();
+		if(i>0){
+			map.put("status", "success");
+			map.put("msg", "修改成功!");
+		}else {
+			map.put("status", "error");
+			map.put("msg", "修改失败!");
+		}
+		return map;
+	}
+	
+	/**
+	 * 审核不通过
+	 * @param id
+	 * @return
+	 */
+	public Map<String, String> noUserStatus(int id){
+		int i=userDao.noUserStatus(id);
+		Map<String, String> map=new HashMap<String, String>();
+		if(i>0){
+			map.put("status", "success");
+			map.put("msg", "修改成功!");
+		}else {
+			map.put("status", "error");
+			map.put("msg", "修改失败!");
+		}
+		return map;
+	}
+	
+	/**
+	 * 设置管理员
+	 * @param id
+	 * @return
+	 */
+	public Map<String, String> yesManager(int id){
+		int i=userDao.yesManager(id);
+		Map<String, String> map=new HashMap<String, String>();
+		if(i>0){
+			map.put("status", "success");
+			map.put("msg", "修改成功!");
+		}else {
+			map.put("status", "error");
+			map.put("msg", "修改失败!");
+		}
+		return map;
+	}
+	/**
+	 * 取消管理员
+	 * @param id
+	 * @return
+	 */
+	public Map<String, String> noManager(int id){
+		int i=userDao.noManager(id);
+		Map<String, String> map=new HashMap<String, String>();
+		if(i>0){
+			map.put("status", "success");
+			map.put("msg", "修改成功!");
+		}else {
+			map.put("status", "error");
+			map.put("msg", "修改失败!");
+		}
+		return map;
+	}
+	
 	
 }

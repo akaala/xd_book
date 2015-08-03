@@ -5,7 +5,9 @@ body,ul,li{
 ul,li{
 	list-style: none;
 }
-
+body{
+	font-size: 14px;
+}
 .xd-left,.xd-right {
 	top: 0;
 }
@@ -17,13 +19,37 @@ ul,li{
 	width: 160px;
 	overflow: auto;
 }
+.xd-head,
+.xd-right{
+	left: 160px;
+}
+.xd-head{
+	position: fixed;
+	top:0;
+	right:0;
+	height:30px;
+	line-height: 30px;
+	background-color: #191818;
+	z-index: 1000;
+	padding-right:20px;
+}
+.xd-head-item{
+	float:right;
+	display: block;
+	padding: 0px 10px;
+	line-height: inherit;
+	color:white;
+	cursor: pointer;
+}
+.xd-head-item:hover{
+	text-decoration: underline;
+}
 .xd-right {
 	position: absolute;
-	right: 0;
-	left: 160px;
+	right: 0;	
 	bottom:0;
 	min-width: 900px;
-	top:0;
+	top:30px;
 	overflow: hidden;
 }
 .xd-menu-title {
@@ -36,8 +62,8 @@ ul,li{
 .xd-menu-box {
 	
 }
-.xd-menu-item {
-	
+.xd-menu-item-fgx {
+	border-top:1px solid #333;
 }
 .xd-menu-text {
 	color: #999;
@@ -52,6 +78,31 @@ ul,li{
 	color: #fff;
 }
 
+/* 按钮 */
+ .button-success,
+ .button-error,
+ .button-warning,
+ .button-secondary {
+     color: white;
+     border-radius: 4px;
+     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+ }
+
+ .button-success {
+     background: rgb(28, 184, 65); /* this is a green */
+ }
+
+ .button-error {
+     background: rgb(202, 60, 60); /* this is a maroon */
+ }
+
+ .button-warning {
+     background: rgb(223, 117, 20); /* this is an orange */
+ }
+
+ .button-secondary {
+     background: rgb(66, 184, 221); /* this is a light blue */
+ }
 
 
 /*列表  */
@@ -72,6 +123,20 @@ ul,li{
 }
 .pure-table td, .pure-table th{
 	padding:0.3em 1em;
+}
+
+.xd-lsit-table-hover tbody tr:hover{
+	background-color: #fbf2d9;
+}
+.xd-userManget-table tbody tr:hover .SetManagerBtn{
+	display: block;
+}
+.SetManagerBtn{
+	display: none;
+	float:right;
+}
+.pullRight{
+	float:right;
 }
 
 /*分页  */
@@ -116,4 +181,5 @@ ul,li{
 color:#c56a10;
 
 	}
+
 

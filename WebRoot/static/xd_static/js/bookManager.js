@@ -1,0 +1,1 @@
+var uMgM=angular.module("userManagerModule",[]);

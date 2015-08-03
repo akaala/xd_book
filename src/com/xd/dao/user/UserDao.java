@@ -149,4 +149,85 @@ public class UserDao{
 		return i;
 	}
 	
+	/**
+	 * 审核用户通过
+	 * @param id
+	 * @return
+	 */
+	public int yesUserStatus(int id){
+		int i=0;
+		SqlSession session=getSession();
+		try {
+			i=session.update("user.yesUserStatus",id);
+			session.commit();
+		} catch (Exception e) {
+			System.out.println("修改用户状态时出现异常......");
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return i;
+	}
+	
+	/**
+	 * 审核用不通过通过
+	 * @param id
+	 * @return
+	 */
+	public int noUserStatus(int id){
+		int i=0;
+		SqlSession session=getSession();
+		try {
+			i=session.update("user.noUserStatus",id);
+			session.commit();
+		} catch (Exception e) {
+			System.out.println("修改用户状态时出现异常......");
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return i;
+	}
+	
+	/**
+	 * 设置管理员
+	 * @param id
+	 * @return
+	 */
+	
+	public int yesManager(int id){
+		int i=0;
+		SqlSession session=getSession();
+		try {
+			i=session.update("user.setManager",id);
+			session.commit();
+		} catch (Exception e) {
+			System.out.println("修改用户状态时出现异常......");
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return i;
+	}
+	/**
+	 * 取消管理员
+	 * @param id
+	 * @return
+	 */
+	
+	public int noManager(int id){
+		int i=0;
+		SqlSession session=getSession();
+		try {
+			i=session.update("user.cancelManager",id);
+			session.commit();
+		} catch (Exception e) {
+			System.out.println("修改用户状态时出现异常......");
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return i;
+	}
+	
 }

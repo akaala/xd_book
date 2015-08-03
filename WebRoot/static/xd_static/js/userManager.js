@@ -12,6 +12,7 @@ uMgM.service("getListDone",function(){
 	this.done=function(users,depts){
 		var dlen=depts.length;
 		var ulen=users.length;
+		//获取部门名称
 		function getDeptName(id){
 			for(var i=0;i<dlen;i++){
 				if(depts[i].id==id&&id!=0){
@@ -19,12 +20,12 @@ uMgM.service("getListDone",function(){
 				}
 			}
 		}
-		
+		//循环用户
 		for(var i=0;i<ulen;i++){
 			var name=getDeptName(users[i].departId);
 			if(!name)
 				name="空";
-			users[i].deptName=name;
+			users[i].deptName=name;			
 		}		
 		return users;
 	}
@@ -68,7 +69,7 @@ uMgM.controller("userListController",["$scope","getUser","getListDone","ajaxFail
 	$scope.search={
 		name:"",
 		departId:0,
-		pageSize:10,
+		pageSize:15,
 		currentPage:1		
 	};
 	$scope.depts=[];
@@ -84,37 +85,38 @@ uMgM.controller("userListController",["$scope","getUser","getListDone","ajaxFail
 		currentPage:$scope.search.currentPage,//当前页
 		totalPage:0//总条数
 	};
-	
-	
-	getUser.getList("user.it?action=userManagerInit",$scope.search).done(function(data){
-		$scope.depts=data.dept;
-		$scope.depts.splice(0,0,{"id":0,name:"==请选择=="});
-		$scope.search.departId=$scope.depts[0].id;
-		
-		$scope.page.totalCount=data.totalCount;
-		$scope.page.currentPage=data.currentPage;
-		$scope.page=pageList.page($scope.page);
-		
-		$scope.userList=getListDone.done(data.users,data.dept);
-		
-		$scope.$apply();
-	}).fail(ajaxFail.fail);
-	
-	$scope.serachList=function(){
-		getUser.getList("user.it?action=getUserList",$scope.search).done(function(data){
+	//封装获取用户并且更新视图的代码
+	function getUserList(url){
+		getUser.getList(url,$scope.search).done(function(data){
+			if(data.dept){
+				$scope.depts=data.dept;
+				$scope.depts.splice(0,0,{"id":0,name:"==请选择=="});
+				$scope.search.departId=$scope.depts[0].id;
+			}
+			
+			
 			$scope.page.totalCount=data.totalCount;
 			$scope.page.currentPage=data.currentPage;
 			$scope.page=pageList.page($scope.page);
+			
 			$scope.userList=getListDone.done(data.users,$scope.depts);
+			
 			$scope.$apply();
 		}).fail(ajaxFail.fail);
 	}
+	//加载列表页
+	getUserList("user.it?action=getUserList&getDept=yes");
+	
+	//单击搜索
+	$scope.serachList=function(){
+		getUserList("user.it?action=getUserList&getDept=no");
+	}
+	//单击页码
 	$scope.clickPageNum=function(goPage){
 		$scope.search.currentPage=goPage;
 		$scope.serachList();		
 	}
-	
-	
+	//删除用户	
 	$scope.deleteUser=function(id){
 		$.ajax({
 			url:"user.it?action=deleteUser&id="+id,
@@ -130,4 +132,63 @@ uMgM.controller("userListController",["$scope","getUser","getListDone","ajaxFail
 			}
 		}).fail(ajaxFail.fail);
 	}
+	//审核用户
+	$scope.changeUserStatus=function(id,action){
+		var url="";
+		if(action==1){
+			url="user.it?action=changeUserStatus&id="+id+"&value=yes";
+		}else if(action==0){
+			url="user.it?action=changeUserStatus&id="+id+"&value=no";
+		}else{
+			alert("参数异常...");
+		}
+		$.ajax({
+			url:url,
+			type:"get"
+		}).done(function(data){
+			if(data.status=="success"){
+				alert(data.msg);			
+				getUserList("user.it?action=getUserList&getDept=no");				
+			}else if(data.status=="error"){
+				alert(data.msg);
+			}else{
+				alert("返回参数异常,删除失败!");
+			}
+		}).fail(ajaxFail.fail);
+	}
+	
+	/**
+	 * action 1:设置成管理员,0:取消管理员
+	 */
+	$scope.changeManager=function(id,action,status){
+		var url="";
+		if(action==1){
+			if(status==0){
+				alert("该人员还未通过审核,不能设置成管理员.");
+				return;
+			}
+			url="user.it?action=changeMangager&id="+id+"&value=yes";
+		}else if(action==0){
+			url="user.it?action=changeMangager&id="+id+"&value=no";
+		}else{
+			alert("参数异常...");
+		}
+		$.ajax({
+			url:url,
+			type:"get"
+		}).done(function(data){
+			if(data.status=="success"){
+				alert(data.msg);			
+				getUserList("user.it?action=getUserList&getDept=no");				
+			}else if(data.status=="error"){
+				alert(data.msg);
+			}else{
+				alert("返回参数异常,删除失败!");
+			}
+		}).fail(ajaxFail.fail);
+		
+		
+	}
+	
+
 }]);

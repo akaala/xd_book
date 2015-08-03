@@ -4,16 +4,21 @@ $(function(){
 var loginModule=angular.module("loginModule",[]);
 //注册一个获取部门的服务
 loginModule.factory("getDepart",["$http",function($http){
-	//var doRequest=function(){
-		return $http.get("login.it?action=getDepart");
-	//}
-	//return doRequest();
+	return $http.get("login.it?action=getDepart");
 }]);
 
 
 //登陆控制器
 loginModule.controller("loginController",function($scope){
 	$scope.user={loginName:"",password:""};
+	$.ajax({
+		url:"login.it?action=getSession",
+		type:"get"
+	}).done(function(data){
+		if(data.status=="success"){
+			location.href="index.html";
+		}
+	});	
 	
 //登录
 $scope.login=function(){
@@ -27,11 +32,13 @@ $scope.login=function(){
 			type:"post",
 			data:$scope.user
 			}).done(function(data){
-				//alert(data);
-				if(data="success"){
-					window.location.href="index.html"
+				if(data.status=="success"){
+					window.location.href="index.html";
+				}
+				else if(data.status=="error"){
+					alert(data.msg);
 				}else{
-					alert("用户名或密码错误!");
+					alert("返回参数异常,请联系管理员.登录失败");
 				}
 			}).fail(function(){
 				alert("服务器连接失败!");

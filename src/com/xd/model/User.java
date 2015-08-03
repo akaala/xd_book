@@ -9,6 +9,9 @@ public class User extends BaseModel{
 	private String entry;
 	private String  password;
 	private String loginName;
+	private int status;
+	private int manager;
+	
 	public int getId() {
 		return id;
 	}
@@ -57,5 +60,17 @@ public class User extends BaseModel{
 	public void setLoginName(String loginName) {
 		this.loginName = loginName;
 	}
-	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public int getManager() {
+		return manager;
+	}
+	public void setManager(int manager) {
+		this.manager = manager;
+	}
+		
 }
