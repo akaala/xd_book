@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="userManagerModule">
+<html ng-app="mainModule">
   <head>
     <title>用户管理</title>
 	
@@ -8,6 +8,8 @@
 		<script type="text/javascript" src="../../static/uiFrame/js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="../../static/uiFrame/js/angular.min-1.4.3.js"></script> 
 	<script type="text/javascript" src="../../static/xd_static/js/userManager.js"></script>
+		<script type="text/javascript" src="../../static/xd_static/js/directive.js"></script>
+		<script type="text/javascript" src="../../static/xd_static/js/service.js"></script>
   </head>
   <body ng-controller="userListController">
   <div class="xd-search-area">
@@ -70,14 +72,14 @@
 
     </tbody>
 </table>
-
-<div class="xd_pageList">		
+<pagelist-directive />
+<!-- <div class="xd_pageList">		
 		<span class="totalpage">总共:{{page.totalCount}}人</span>	
 		<a class="lastPage" ng-click="clickPageNum(page.lastPage)" >尾页</a>
 		<a class="nextPage"  ng-click="clickPageNum(page.nextPage)">下页</a>
 		<span class="currentPage">{{page.currentPage}}/{{page.totalPage}}页</span>			
 		<a class="upPage"  ng-click="clickPageNum(page.upPage)">上页</a>
 		<a class="firstPage"  ng-click="clickPageNum(page.firstPage)">首页</a>
-	</div>	
+	</div> -->	
   </body>
 </html>

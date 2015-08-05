@@ -4,9 +4,26 @@
 
 <mapper namespace="book">
     <select id="getListBook" parameterType="book" resultType="book">
-        select * from tb_book
+        select * from tb_book 
+        <where>
+        	<if test="name != '' and name != null">
+        		and name like '${name}'
+        	</if>
+        	<if test="number != ' and number != null">
+        		and number like '${number}'
+        	</if>
+        </where>
     </select>
-   <!--  <select id="selectUserList" parameterType="int" resultType="User">
-        select * from user 
-    </select> -->
+  <select id="getBookCount" parameterType="book" resultType="int">
+  	select count(*) from tb_book;
+  </select>
+  <update id="updateBook">
+  	update tb_book set
+  	(number,name,author,price,publisher)
+  	values
+  	(#{number},#{name},#{author},#{price},#{publisher})
+  	where number=#{number}
+  </update>
+  
+  
 </mapper>

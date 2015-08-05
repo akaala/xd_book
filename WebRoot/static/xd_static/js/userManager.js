@@ -1,5 +1,5 @@
-var uMgM=angular.module("userManagerModule",[]);
-uMgM.service("getUser",function(){
+var mainModule=angular.module("mainModule",[]);
+mainModule.service("getUser",function(){
 	this.getList=function(url,data){
 		return $.ajax({
 			url:url,
@@ -8,7 +8,7 @@ uMgM.service("getUser",function(){
 		});
 	}
 });
-uMgM.service("getListDone",function(){
+mainModule.service("getListDone",function(){
 	this.done=function(users,depts){
 		var dlen=depts.length;
 		var ulen=users.length;
@@ -31,12 +31,12 @@ uMgM.service("getListDone",function(){
 	}
 });
 
-uMgM.service("ajaxFail",function(){
+/*mainModule.service("ajaxFail",function(){
 	this.fail=function(){
 		alert("连接服务器失败")
 	}
-});
-uMgM.service("pageList",function(){
+});*/
+/*mainModule.service("pageList",function(){
 	this.page=function(page){
 		var totalCount=page.totalCount;
 		var pageSize=page.pageSize;
@@ -63,9 +63,9 @@ uMgM.service("pageList",function(){
 		}
 		
 	}
-})
+})*/
 
-uMgM.controller("userListController",["$scope","getUser","getListDone","ajaxFail","pageList",function($scope,getUser,getListDone,ajaxFail,pageList){
+mainModule.controller("userListController",["$scope","getUser","getListDone","ajaxFail","pageList",function($scope,getUser,getListDone,ajaxFail,pageList){
 	$scope.search={
 		name:"",
 		departId:0,
@@ -75,16 +75,8 @@ uMgM.controller("userListController",["$scope","getUser","getListDone","ajaxFail
 	$scope.depts=[];
 	$scope.userList=[];
 	
-	$scope.page={
-		totalCount:0,//总条数
-		nextPage:2,//下页
-		firstPage:1,//首页
-		upPage:1,//上页
-		lastPage:0,//最后页
-		pageSize:$scope.search.pageSize,//每页条数
-		currentPage:$scope.search.currentPage,//当前页
-		totalPage:0//总条数
-	};
+	$scope.page={};
+	$scope.page.pageSize=$scope.search.pageSize;
 	//封装获取用户并且更新视图的代码
 	function getUserList(url){
 		getUser.getList(url,$scope.search).done(function(data){
@@ -97,8 +89,7 @@ uMgM.controller("userListController",["$scope","getUser","getListDone","ajaxFail
 			
 			$scope.page.totalCount=data.totalCount;
 			$scope.page.currentPage=data.currentPage;
-			$scope.page=pageList.page($scope.page);
-			
+			$scope.page=pageList.page($scope.page);//调用服务,重置page页码属性
 			$scope.userList=getListDone.done(data.users,$scope.depts);
 			
 			$scope.$apply();
