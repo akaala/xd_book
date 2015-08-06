@@ -22,10 +22,6 @@
          <button type="button" class="pure-button pure-button-primary" ng-click="addList()">新增</button>
     </fieldset>
 </form> 
-
-
-
-
 </div>
 <table class="pure-table pure-table-bordered xd-lsit-table xd-lsit-table-hover">
     <thead>
@@ -44,12 +40,12 @@
     <tbody>
         <tr ng-repeat="b in bookList">
         <td>{{$index+1}}</td>
-            <td>{{u.number}}</td>
-            <td>{{u.name}}</td>
-            <td>{{u.author}}</td>
-            <td>{{u.price}}</td>
-            <td>{{u.publisher}}</td>
-            <td>{{u.borrorName}}</td>          
+            <td>{{b.number}}</td>
+            <td>{{b.name}}</td>
+            <td>{{b.author}}</td>
+            <td>{{b.price}}</td>
+            <td>{{b.publisher}}</td>
+            <td>{{b.borrorName}}</td>
             <td width="250">
             	<input type="button" value="删除" ng-click="deleteBook(b.id)" class="pure-button pure-button-primary" />
             	<input type="button" value="修改" ng-click="updateBook(b.id)" class="button-success pure-button" />

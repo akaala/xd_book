@@ -9,7 +9,7 @@
         	<if test="name != '' and name != null">
         		and name like '${name}'
         	</if>
-        	<if test="number != ' and number != null">
+        	<if test="number != '' and number != null">
         		and number like '${number}'
         	</if>
         </where>
@@ -32,5 +32,10 @@ where number=#{number}
 VALUES
 (#{number},#{name},#{author},#{price},#{publisher},#{userId})
   </insert>
+  <!-- TODO: mybaits如何用数组做参数 -->
+  <select id="getUserByBook">
+  select name FROM tb_user where id=#{userId}
+  </select>
+  
   
 </mapper>
