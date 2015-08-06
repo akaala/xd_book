@@ -1,6 +1,6 @@
 package com.xd.model;
 
-public class Book {
+public class Book extends BaseModel{
 	//图书编码
 	private String number;
 	//书名
@@ -11,8 +11,8 @@ public class Book {
 	private float price;
 	//出版社
 	private String publisher;
-	//状态
-	private int status;
+	//图书借阅人
+	private int userId;
 	public String getNumber() {
 		return number;
 	}
@@ -43,10 +43,11 @@ public class Book {
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
-	public int getStatus() {
-		return status;
+	public int getUserId() {
+		return userId;
 	}
-	public void setStatus(int status) {
-		this.status = status;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
+	
 }

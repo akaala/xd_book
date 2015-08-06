@@ -18,12 +18,19 @@
   	select count(*) from tb_book;
   </select>
   <update id="updateBook">
-  	update tb_book set
-  	(number,name,author,price,publisher)
-  	values
-  	(#{number},#{name},#{author},#{price},#{publisher})
-  	where number=#{number}
+update tb_book set
+number=#{number},name=#{name},author=#{author},price=#{price},publisher=#{publisher}
+where number=#{number}
   </update>
+  <delete id="deleteBook" parameterType="book">
+  	delete from tb_book where number=#{number}
+  </delete>
   
+  <insert id="insertBook">
+  INSERT INTO tb_book
+(number,name,author,price,publisher,userId)
+VALUES
+(#{number},#{name},#{author},#{price},#{publisher},#{userId})
+  </insert>
   
 </mapper>

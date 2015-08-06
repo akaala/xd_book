@@ -2,7 +2,6 @@ mainModule.service("pageList",function(){
 	this.page=function(page){
 		var totalCount=page.totalCount;
 		var pageSize=page.pageSize;
-		alert(pageSize);
 		var currentPage=page.currentPage;
 		var totalPage=Math.ceil((totalCount/pageSize));
 		var upPage=currentPage-1;
