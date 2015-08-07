@@ -11,8 +11,10 @@ public class Book extends BaseModel{
 	private float price;
 	//出版社
 	private String publisher;
-	//图书借阅人
+	//图书借阅人id
 	private int userId;
+	//图书借阅人姓名
+	private String userName;
 	public String getNumber() {
 		return number;
 	}
@@ -49,5 +51,12 @@ public class Book extends BaseModel{
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
 	
 }

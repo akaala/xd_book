@@ -45,7 +45,7 @@
             <td>{{b.author}}</td>
             <td>{{b.price}}</td>
             <td>{{b.publisher}}</td>
-            <td>{{b.borrorName}}</td>
+            <td>{{b.userName}}</td>
             <td width="250">
             	<input type="button" value="删除" ng-click="deleteBook(b.id)" class="pure-button pure-button-primary" />
             	<input type="button" value="修改" ng-click="updateBook(b.id)" class="button-success pure-button" />
@@ -54,14 +54,15 @@
 
     </tbody>
 </table>
-
-<div class="xd_pageList">		
+<pagelist-directive />
+<!-- <div class="xd_pageList">		
 		<span class="totalpage">总共:{{page.totalCount}}人</span>	
 		<a class="lastPage" ng-click="clickPageNum(page.lastPage)" >尾页</a>
 		<a class="nextPage"  ng-click="clickPageNum(page.nextPage)">下页</a>
 		<span class="currentPage">{{page.currentPage}}/{{page.totalPage}}页</span>			
 		<a class="upPage"  ng-click="clickPageNum(page.upPage)">上页</a>
 		<a class="firstPage"  ng-click="clickPageNum(page.firstPage)">首页</a>
-</div>	
+</div>	 -->
+
   </body>
 </html>

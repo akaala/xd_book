@@ -27,7 +27,7 @@ public class BookService {
 		Map<String, Object> map=new HashMap<String, Object>();
 		int totalCount=bookDao.getBookCount(book);
 		map.put("totalCount", totalCount);
-		map.put("pageSize",book.getPageSize());
+		map.put("currentPage",book.getcurrentPage());
 		map.put("list", list);
 		return map;
 	}

@@ -4,13 +4,13 @@
 
 <mapper namespace="book">
     <select id="getListBook" parameterType="book" resultType="book">
-        select * from tb_book 
+        select b.number,b.name,b.author,b.price,b.publisher,b.userId,u.name as userName from tb_book b LEFT JOIN tb_user u on b.userId=u.id
         <where>
         	<if test="name != '' and name != null">
-        		and name like '${name}'
+        		and b.name like '%${name}%'
         	</if>
         	<if test="number != '' and number != null">
-        		and number like '${number}'
+        		and b.number like '%${number}%'
         	</if>
         </where>
     </select>
@@ -32,10 +32,8 @@ where number=#{number}
 VALUES
 (#{number},#{name},#{author},#{price},#{publisher},#{userId})
   </insert>
-  <!-- TODO: mybaits如何用数组做参数 -->
-  <select id="getUserByBook">
-  select name FROM tb_user where id=#{userId}
-  </select>
+  
+
   
   
 </mapper>
