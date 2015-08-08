@@ -27,12 +27,12 @@ homeModule.controller("indexController",function($scope){
 			
 			
 		}else{
-			alert("获取登录信息失败,将跳转到登录页");
+			//alert("获取登录信息失败,将跳转到登录页");
 			location.href="login.html";
 		}
 		
 	}).fail(function(){
-		alert("获取登录信息失败,将跳转到登录页");
+		//alert("获取登录信息失败,将跳转到登录页");
 		location.href="login.html";
 	});
 	$scope.logOut=function(){

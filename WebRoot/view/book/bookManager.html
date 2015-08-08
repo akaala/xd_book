@@ -19,7 +19,7 @@
         <input type="text" placeholder="书名" ng-model="search.name">
  		<input type="text" placeholder="编码" ng-model="search.number">
         <button type="button" class="pure-button pure-button-primary" ng-click="serachList()">查询</button>
-         <button type="button" class="pure-button pure-button-primary" ng-click="addList()">新增</button>
+         <button type="button" class="pure-button pure-button-primary" ng-click="editBook(-1)">新增</button>
     </fieldset>
 </form> 
 </div>
@@ -48,7 +48,7 @@
             <td>{{b.userName}}</td>
             <td width="250">
             	<input type="button" value="删除" ng-click="deleteBook(b.id)" class="pure-button pure-button-primary" />
-            	<input type="button" value="修改" ng-click="updateBook(b.id)" class="button-success pure-button" />
+            	<input type="button" value="修改" ng-click="editBook(b.id)" class="button-success pure-button" />
             </td>
         </tr>
 

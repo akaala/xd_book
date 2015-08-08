@@ -11,18 +11,33 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.xd.model.Book;
 import com.xd.service.BookService;
+
 @Controller
 @RequestMapping("view/book/book.it")
 public class BookController {
 	private BookService bookService;
-	public BookController(){
-		bookService=new BookService();
+
+	public BookController() {
+		bookService = new BookService();
 	}
-	
-	
-	@RequestMapping(params="action=getBookList",method=RequestMethod.GET)
+
+	@RequestMapping(params = "action=getBookList", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> getBookList(Book book){
-		return bookService.getListBook(book); 
+	public Map<String, Object> getBookList(Book book) {
+		return bookService.getListBook(book);
 	}
+
+
+	@RequestMapping(params = "action=saveBook", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> saveBook(Book book) {
+		return bookService.saveBook(book);
+	}
+	
+	@RequestMapping(params="action=deleteBook",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> deleteBook(Book book){
+		return bookService.deleteBook(book);
+	}
+	
 }

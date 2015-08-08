@@ -1,6 +1,7 @@
 package com.xd.model;
 
 public class Book extends BaseModel{
+	private int id;	
 	//图书编码
 	private String number;
 	//书名
@@ -15,6 +16,13 @@ public class Book extends BaseModel{
 	private int userId;
 	//图书借阅人姓名
 	private String userName;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNumber() {
 		return number;
 	}

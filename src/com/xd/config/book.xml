@@ -4,7 +4,7 @@
 
 <mapper namespace="book">
     <select id="getListBook" parameterType="book" resultType="book">
-        select b.number,b.name,b.author,b.price,b.publisher,b.userId,u.name as userName from tb_book b LEFT JOIN tb_user u on b.userId=u.id
+        select b.id,b.number,b.name,b.author,b.price,b.publisher,b.userId,u.name as userName from tb_book b LEFT JOIN tb_user u on b.userId=u.id
         <where>
         	<if test="name != '' and name != null">
         		and b.name like '%${name}%'
@@ -13,6 +13,10 @@
         		and b.number like '%${number}%'
         	</if>
         </where>
+        <if test="pageSize>0 and pageStart>-1">
+			limit #{pageStart},#{pageSize}
+		</if>
+        
     </select>
   <select id="getBookCount" parameterType="book" resultType="int">
   	select count(*) from tb_book;
@@ -23,14 +27,14 @@ number=#{number},name=#{name},author=#{author},price=#{price},publisher=#{publis
 where number=#{number}
   </update>
   <delete id="deleteBook" parameterType="book">
-  	delete from tb_book where number=#{number}
+  	delete from tb_book where id=#{id}
   </delete>
   
   <insert id="insertBook">
   INSERT INTO tb_book
 (number,name,author,price,publisher,userId)
 VALUES
-(#{number},#{name},#{author},#{price},#{publisher},#{userId})
+(#{number},#{name},#{author},#{price},#{publisher},0)
   </insert>
   
 

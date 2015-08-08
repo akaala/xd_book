@@ -33,8 +33,26 @@ mainModule.controller("bookListController",function($scope,getBookList,pageList)
 	}
 	getList();
 	$scope.serachList=function(){
-		//alert($scope.search.name);
 		getList();
+	}
+	$scope.editBook=function(id){
+		location.href="editBook.html?id="+id;
+	}
+	$scope.clickPageNum=function(topage){
+		$scope.search.currentPage=topage;
+		getList();
+	}
+	$scope.deleteBook=function(id){
+		$.ajax({
+			url:"book.it?action=deleteBook&id="+id
+		}).done(function(data){
+			alert(data.msg)
+			if(data.status=="success"){
+				getList();	
+			}
+		}).fail(function(){
+			alert("服务器连接失败!")
+		});
 	}
 	
 });

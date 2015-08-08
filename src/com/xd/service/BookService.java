@@ -23,6 +23,7 @@ public class BookService {
 	 * @return
 	 */
 	public Map<String, Object> getListBook(Book book){
+		book.setPageStart(book.getcurrentPage());
 		List<Book> list=bookDao.getListBook(book);
 		Map<String, Object> map=new HashMap<String, Object>();
 		int totalCount=bookDao.getBookCount(book);
@@ -82,6 +83,18 @@ public class BookService {
 			map.put("msg", "插入成功");
 		}
 		return map;
+	}
+	/**
+	 * 保存图书
+	 * @param book
+	 * @return
+	 */
+	public Map<String, Object> saveBook(Book book){
+		if(book.getId()==-1){
+			return insertBook(book);
+		}else{
+			return updateBook(book);
+		}
 	}
 	
 }

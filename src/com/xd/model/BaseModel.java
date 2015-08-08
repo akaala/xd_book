@@ -5,7 +5,8 @@ public class BaseModel {
 	private int totalCount;//总条数
 	private int currentPage;//当前页
 	
-	private int pageStart;
+	private int pageStart;//起始数据索引
+	
 	public int getPageSize() {
 		return pageSize;
 	}

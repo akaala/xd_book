@@ -110,7 +110,7 @@ public class BookDao{
 		}finally{
 			session.close();
 		}
-		return i=0;
+		return i;
 	}
 	
 	
