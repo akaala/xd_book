@@ -34,6 +34,15 @@ public class BookService {
 	}
 	
 	/**
+	 * 获取图书数量
+	 * @param book
+	 * @return
+	 *//*
+		public int getBookCount(Book book){
+			int i=bookDao.getBookCount(book);
+			return i;
+		}*/
+	/**
 	 * 更新图书信息
 	 * @param book
 	 * @return
@@ -90,6 +99,16 @@ public class BookService {
 	 * @return
 	 */
 	public Map<String, Object> saveBook(Book book){
+		Book b1=new Book();
+		b1.setNumber(book.getNumber());
+		int i=bookDao.getBookCount(b1);
+		Map<String, Object> map=new HashMap<String, Object>();
+		if(i>0){
+			map.put("status", "error");
+			map.put("msg", "图书编码重复");
+			return map;
+		}
+		
 		if(book.getId()==-1){
 			return insertBook(book);
 		}else{

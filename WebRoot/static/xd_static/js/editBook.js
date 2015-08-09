@@ -49,6 +49,20 @@ mainModule.controller("editController",function($scope){
 		location.href="bookManager.html";
 	}
 	$scope.saveBook=function(){
+		if(!$scope.book.number){
+			alert("请填写图书编码");
+			return;
+		}
+		if(!$scope.book.name){
+			alert("请填写图书名称");
+			return;
+		}
+		
+		if(isNaN($scope.book.price)){
+			alert("价格必须是数字");
+			return;
+		}
+		
 		$.ajax({
 			url:"book.it?action=saveBook",
 			data:$scope.book

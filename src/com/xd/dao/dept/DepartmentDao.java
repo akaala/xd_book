@@ -85,6 +85,26 @@ e.printStackTrace();
 			i=session.selectOne("dept.checkUserInDept", department);
 		} catch (Exception e) {
 			System.out.println("检查部门人员是异常....");
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return i;
+	}
+	
+	/**
+	 * 删除部门
+	 * @param department
+	 * @return
+	 */
+	public int deleteDept(Department department){
+		int i=-1;
+		SqlSession session=getSession();
+		try {
+			i=session.delete("dept.deleteDept",department);
+			session.commit();
+		} catch (Exception e) {
+			System.out.println("删除部门异常.....");
 		}finally{
 			session.close();
 		}

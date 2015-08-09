@@ -16,7 +16,7 @@
     </insert>
     <!-- 修改部门 -->
      <update id="updateDept" parameterType="department">
-    	update into set 
+    	update tb_department set 
     	name=#{name}
     	where id=#{id}
     </update> 

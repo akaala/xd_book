@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boorow">
+<!-- 插入记录 -->
+	<insert id="insertBorrow" parameterType="borrow">
+		insert into tb_borrow
+		(time,bookId,userId,status)
+		values
+		(NOW(),#{bookId},#{userId},#{status})
+	</insert>
+	<!-- 删除记录 -->
+	<delete id="deleteApplication" parameterType="borrow">
+		delete from tb_borrow WHERE id=#{id};
+	</delete>
+	
+	<!-- 更新状态 ,完成借书-->
+  <update id="updateStatus" parameterType="borrow">
+  	update tb_borrow set status=#{status} where id=#{id}
+  </update>
+  <!-- 获取借阅信息 -->
+  <select id="getBorrowList">
+  	select 
+  		r.id,r.userId,r.time,r.status,r.bookId,r.status
+  		b.name as bookName,b.number,b.author,b.publisher,
+  		u.name as userName
+  	 from tb_borrow r,tb_book b,tb_user u
+  	 where u.status=1 and b.id=r.bookId and b.userId=u.id
+	<if test="bookName!=''and bookName!=null">
+		and b.name like "%${bookName}%"
+	</if>
+	<if test="userName!='' and userName!=null">
+		and u.name like "%${userName}%"
+	</if>
+  	<if test="number!='' and number!=null">
+		and b.number like "%${number}%"
+	</if>
+	<if test="pageSize>0 and pageStart>-1">
+		limit #{pageStart},#{pageSize}
+	</if>
+  </select>
+  
+  
+</mapper>

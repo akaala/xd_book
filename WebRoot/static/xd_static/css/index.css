@@ -183,4 +183,7 @@ color:#c56a10;
 
 	}
 
-
+.btnCenter{
+	text-align: center;
+	padding: 10px 0;
+}

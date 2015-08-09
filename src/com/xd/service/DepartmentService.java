@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.xd.dao.dept.DepartmentDao;
@@ -33,7 +34,7 @@ public class DepartmentService {
 	 */
 	public Map<String,String> updateDept(Department department){
 		int i=0;
-		Map<String, String> map=null;
+		Map<String, String> map=new HashMap<String, String>();
 		i=deptDao.updateDept(department);
 		if(i>0){
 			map.put("status", "success");
@@ -62,6 +63,46 @@ public class DepartmentService {
 			map.put("msg", "部门添加失败.");
 		}
 		return map;
+	}
+	
+	/**
+	 * 删除部门
+	 * @param department
+	 * @return
+	 */
+	public Map<String,String> deleteDept(Department department){
+		Map<String, String> map=new HashMap<String, String>();
+		int count=deptDao.checkUserInDept(department);
+		if(count==-1){
+			map.put("status", "error");
+			map.put("msg", "检查部门人员时异常,无法删除部门");
+		}else if (count==0) {
+			count=deptDao.deleteDept(department);
+			if(count==-1){
+				map.put("status", "error");
+				map.put("msg", "部门删除异常,无法删除部门.....");
+			}else{
+				map.put("status", "success");
+				map.put("msg", "部门已删除.....");
+			}
+		}else if (count>0) {
+			map.put("status", "error");
+			map.put("msg", "部门里面还有人员,暂时无法删除!");
+		}
+		return map;
+	}
+	
+	/**
+	 * 保存部门
+	 * @param department
+	 * @return
+	 */
+	public Map<String,String> savdDept(Department department){
+		if(department.getId()==-1){
+			return insertDept(department);
+		}else {
+			return updateDept(department);
+		}
 	}
 	
 }

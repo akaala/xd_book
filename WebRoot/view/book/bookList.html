@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html ng-app="mainModule">
   <head>
-    <title>书籍管理</title>
+    <title>书籍查询</title>
 	
 <link type="text/css" rel="stylesheet" href="../../static/uiFrame/css/pure-min.css" />
 <link type="text/css" rel="stylesheet" href="../../static/xd_static/css/index.css" />
 <script type="text/javascript" src="../../static/uiFrame/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="../../static/uiFrame/js/angular.min-1.4.3.js"></script>
-	<script type="text/javascript" src="../../static/xd_static/js/bookManager.js"></script>
+	<script type="text/javascript" src="../../static/xd_static/js/bookList.js"></script>
 		<script type="text/javascript" src="../../static/xd_static/js/directive.js"></script>
 		<script type="text/javascript" src="../../static/xd_static/js/service.js"></script>
   </head>
@@ -15,11 +15,10 @@
   <div class="xd-search-area">
 <form class="pure-form">
     <fieldset>
-        <legend class="currentPage-nav">书籍管理</legend>
+        <legend class="currentPage-nav">书籍查询</legend>
         <input type="text" placeholder="书名" ng-model="search.name">
  		<input type="text" placeholder="编码" ng-model="search.number">
         <button type="button" class="pure-button pure-button-primary" ng-click="serachList()">查询</button>
-         <button type="button" class="pure-button pure-button-primary" ng-click="editBook(-1)">新增</button>
     </fieldset>
 </form> 
 </div>
@@ -32,7 +31,7 @@
              <th>作者</th>
              <th>价格</th>
             <th>出版社</th>
-           <th>借书人</th>
+           	<th>借书人</th>
             <td>操作</td>
         </tr>
     </thead>
@@ -45,24 +44,20 @@
             <td>{{b.author}}</td>
             <td>{{b.price}}</td>
             <td>{{b.publisher}}</td>
-           <td>{{b.userName}}</td>
+            <td>
+				<label ng-if="b.userId==0" style="color:red;">未被借</label>
+				<label ng-if="b.userId>0">已被借</label>
+			</td>
             <td width="250">
-            	<input type="button" value="删除" ng-click="deleteBook(b.id)" class="pure-button pure-button-primary" />
-            	<input type="button" value="修改" ng-click="editBook(b.id)" class="button-success pure-button" />
+            	<input ng-if="b.userId==0" type="button" value="借书" ng-click="borrowBook(b.id)" class="pure-button pure-button-primary" />
+            	<input ng-if="b.userId>0" type="button" value="借书" class="pure-button pure-button-disabled" />
             </td>
         </tr>
 
     </tbody>
 </table>
 <pagelist-directive />
-<!-- <div class="xd_pageList">		
-		<span class="totalpage">总共:{{page.totalCount}}人</span>	
-		<a class="lastPage" ng-click="clickPageNum(page.lastPage)" >尾页</a>
-		<a class="nextPage"  ng-click="clickPageNum(page.nextPage)">下页</a>
-		<span class="currentPage">{{page.currentPage}}/{{page.totalPage}}页</span>			
-		<a class="upPage"  ng-click="clickPageNum(page.upPage)">上页</a>
-		<a class="firstPage"  ng-click="clickPageNum(page.firstPage)">首页</a>
-</div>	 -->
+
 
   </body>
 </html>

@@ -16,12 +16,12 @@
     <fieldset>
         <div class="pure-control-group">
             <label>图书编码</label>
-            <input ng-model="book.number" type="text" placeholder="图书编码">
+            <input ng-model="book.number" required="required"  type="text" placeholder="图书编码">
         </div>
 
         <div class="pure-control-group">
             <label>书名</label>
-            <input ng-model="book.name" type="text" placeholder="书名">
+            <input ng-model="book.name" required="required" type="text" placeholder="书名">
         </div>
 
         <div class="pure-control-group">
@@ -30,7 +30,7 @@
         </div>
         <div class="pure-control-group">
             <label>价格</label>
-            <input ng-model="book.price" type="text" placeholder="价格">
+            <input ng-model="book.price" type="number" placeholder="价格">
         </div>
 		<div class="pure-control-group">
             <label>出版社</label>
