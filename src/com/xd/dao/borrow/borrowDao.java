@@ -10,7 +10,7 @@ import org.apache.taglibs.standard.lang.jstl.Literal;
 
 import com.xd.dao.SqlSessionDao;
 import com.xd.model.Borrow;
-public class borrowDao {
+public class BorrowDao {
 	/**
 	 * 获取session
 	 * @return
@@ -38,6 +38,25 @@ public class borrowDao {
 		}
 		return list;
 	}
+	/**
+	 * 获取总数量
+	 * @param borrow
+	 * @return
+	 */
+	public int getBorrowCount(Borrow borrow){
+		SqlSession session=getSession();
+		int i=-1;
+		try {
+			i=session.selectOne("borrow.getBorrowCount",borrow);
+		} catch (Exception e) {
+			System.out.println("获取数量时异常......");
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return i;
+	}
+	
 	/**
 	 * 插入数据
 	 * @param borrow
@@ -93,7 +112,5 @@ public class borrowDao {
 		}
 		return i;
 	}
-	
-	
 	
 }

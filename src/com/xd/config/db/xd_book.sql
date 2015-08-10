@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50525
 File Encoding         : 65001
 
-Date: 2015-08-09 16:56:26
+Date: 2015-08-10 22:45:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -54,14 +54,17 @@ CREATE TABLE `tb_borrow` (
   `bookId` int(11) NOT NULL DEFAULT '0' COMMENT '图书id',
   `userId` int(11) NOT NULL DEFAULT '0' COMMENT '用户id',
   `status` int(11) NOT NULL DEFAULT '0' COMMENT '借,还状态1:借,2:还,3:借申请',
+  `operatorId` int(11) NOT NULL COMMENT '经办人',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of tb_borrow
 -- ----------------------------
-INSERT INTO `tb_borrow` VALUES ('1', '2015-08-02 17:37:49', '0', '0', '0');
-INSERT INTO `tb_borrow` VALUES ('2', '2015-08-09 13:01:23', '1', '30', '3');
+INSERT INTO `tb_borrow` VALUES ('1', '2015-08-02 17:37:49', '0', '0', '0', '0');
+INSERT INTO `tb_borrow` VALUES ('2', '2015-08-09 13:01:23', '1', '30', '3', '46');
+INSERT INTO `tb_borrow` VALUES ('3', '2015-08-10 20:42:40', '0', '0', '0', '0');
+INSERT INTO `tb_borrow` VALUES ('4', '2015-08-10 20:52:15', '3', '30', '3', '46');
 
 -- ----------------------------
 -- Table structure for `tb_department`

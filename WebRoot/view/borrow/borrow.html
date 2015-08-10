@@ -1,17 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="mainModule">
   <head>
-    <title>borrow.html</title>
-	
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-    <meta http-equiv="description" content="this is my page">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    
-    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+  <meta charset="utf-8">
+    <title>借阅信息</title>
+	<link type="text/css" rel="stylesheet" href="../../static/uiFrame/css/pure-min.css" />
+<link type="text/css" rel="stylesheet" href="../../static/xd_static/css/index.css" />
+<script type="text/javascript" src="../../static/uiFrame/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../../static/uiFrame/js/angular.min-1.4.3.js"></script>
+<script type="text/javascript" src="../../static/xd_static/js/borrow.js"></script>
+<script type="text/javascript" src="../../static/xd_static/js/directive.js"></script>
+<script type="text/javascript" src="../../static/xd_static/js/service.js"></script>
 
   </head>
   
-  <body>
-    <h1>borrow</h1>
+  <body ng-controller="borrowController">
+    <div class="xd-search-area">
+<form class="pure-form">
+    <fieldset>
+        <legend class="currentPage-nav">借阅查询</legend>
+        <input type="text" placeholder="书名" ng-model="borrow.bookName">
+ 		<input type="text" placeholder="借书人" ng-model="borrow.userName">
+ 		<input type="text" placeholder="经办人" ng-model="borrow.operatorName">
+        <button type="button" class="pure-button pure-button-primary" ng-click="serachList()">查询</button>
+    </fieldset>
+</form> 
+</div>
+<table class="pure-table pure-table-bordered xd-lsit-table xd-lsit-table-hover">
+    <thead>
+        <tr>
+        	<th>序号</th>
+        	<th>编码</th>
+            <th>书名</th>
+             <th>借书人</th>
+             <th>时间</th>
+            <th>经办人</th>
+            <td>操作</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="b in borrowList">
+        <td>{{$index+1}}</td>
+            <td>{{b.number}}</td>
+            <td>{{b.bookName}}</td>
+            <td>{{b.userName}}</td>
+            <td>{{b.time}}</td>
+            <td>{{b.operatorId}}</td>
+            <td width="250">
+            	<input type="button" value="同意" ng-click="borrowBook(b.id)" class="pure-button pure-button-primary" />
+            	<input type="button" value="驳回" ng-click="deleteBorrowApp" class="button-success pure-button" />
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+<pagelist-directive />
   </body>
 </html>

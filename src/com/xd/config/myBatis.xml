@@ -6,7 +6,7 @@
         <typeAlias type="com.xd.model.Book" alias="book"/>
         <typeAlias type="com.xd.model.User" alias="user"/>
         <typeAlias type="com.xd.model.Department" alias="department"/>
-        <typeAlias type="com.xd.model.borrow" alias="borrow"/>
+        <typeAlias type="com.xd.model.Borrow" alias="borrow"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">

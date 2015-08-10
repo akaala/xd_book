@@ -39,9 +39,9 @@ mainModule.controller("bookListController",function($scope,getBookList,pageList)
 		$scope.search.currentPage=topage;
 		getList();
 	}
-	$scope.borrowBook=function(id){
+	$scope.borrowBook=function(bookId){
 		$.ajax({
-			url:"borrow.it?action=borrowApplication&id="+id
+			url:"../../borrow.it?action=insertBorrow&bookId="+bookId
 		}).done(function(data){
 			alert(data.msg)
 		}).fail(function(){

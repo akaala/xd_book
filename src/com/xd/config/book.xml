@@ -4,7 +4,8 @@
 
 <mapper namespace="book">
   <select id="getListBook" parameterType="book" resultType="book">
-        select b.id,b.number,b.name,b.author,b.price,b.publisher,b.userId,u.name as userName from tb_book b LEFT JOIN tb_user u on b.userId=u.id
+        select b.id,b.number,b.name,b.author,b.price,b.publisher,b.userId,u.name as userName 
+        from tb_book b left JOIN tb_user u on b.userId=u.id
         <where>
         	<if test="name != '' and name != null">
         		and b.name like '%${name}%'
