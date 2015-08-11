@@ -45,10 +45,10 @@
             <td>{{b.bookName}}</td>
             <td>{{b.userName}}</td>
             <td>{{b.time}}</td>
-            <td>{{b.operatorId}}</td>
+            <td>{{b.operatorName}}</td>
             <td width="250">
             	<input type="button" value="同意" ng-click="borrowBook(b.id)" class="pure-button pure-button-primary" />
-            	<input type="button" value="驳回" ng-click="deleteBorrowApp" class="button-success pure-button" />
+            	<input type="button" value="驳回" ng-click="deleteBorrowApp(b.id)" class="button-success pure-button" />
             </td>
         </tr>
 

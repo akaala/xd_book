@@ -25,4 +25,30 @@ mainModule.controller("borrowController",function($scope,pageList,ajaxFail){
 	$scope.serachList=function(){
 		getBorrowList();
 	}
+	
+	$scope.clickPageNum=function(currentPage){
+		$scope.borrow.currentPage=currentPage;
+		getBorrowList();
+	}
+	$scope.deleteBorrowApp=function(id){
+		$.ajax({
+			url:"../../borrow.it?action=deleteApplication&id="+id
+		}).done(function(data){
+			alert(data.msg)
+			if(data.status=="success"){
+				getBorrowList();
+			}			
+		}).fail(ajaxFail.fail);
+	}
+	$scope.borrowBook=function(id){
+		$.ajax({
+			url:"../../borrow.it?action=updateStatus&id="+id
+		}).done(function(data){
+			alert(data.msg)
+			if(data.status=="success"){
+				getBorrowList();
+			}			
+		}).fail(ajaxFail.fail);
+	}
+	
 });

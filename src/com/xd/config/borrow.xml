@@ -21,32 +21,35 @@
   </update>
   <!-- 获取借阅信息 -->
   <select id="getBorrowList" parameterType="borrow" resultType="borrow">  
-  	 SELECT r.*,u.name as userName,b.name as bookName,op.name as operatorName FROM tb_borrow r 
+  	 SELECT r.*,u.name as userName,b.name as bookName, b.number,op.name as operatorName FROM tb_borrow r 
   	 LEFT JOIN tb_user u on r.userId=u.id 
   	 LEFT JOIN tb_book b on r.bookId=b.id 
-  	 LEFT JOIN tb_user op on r.operatorId=op.id  	 
-	<if test="bookName!=''and bookName!=null">
-		and b.name like "%${bookName}%"
-	</if>
-	<if test="userName!='' and userName!=null">
-		and u.name like "%${userName}%"
-	</if>
-  	<if test="number!='' and number!=null">
-		and b.number like "%${number}%"
-	</if>
-	<if test="operatorName!='' and operatorName!=null">
-		and op.name like "%${operatorName}%"
-	</if>
-	<if test="pageSize>0 and pageStart>-1">
-		limit #{pageStart},#{pageSize}
-	</if>
+  	 LEFT JOIN tb_user op on r.operatorId=op.id  	
+  	 <where>
+  	 		<if test="bookName!=''and bookName!=null">
+				and b.name like "%${bookName}%"
+			</if>
+			<if test="userName!='' and userName!=null">
+				and u.name like "%${userName}%"
+			</if>
+		  	<if test="number!='' and number!=null">
+				and b.number like "%${number}%"
+			</if>
+			<if test="operatorName!='' and operatorName!=null">
+				and op.name like "%${operatorName}%"
+			</if>
+  	 </where> 
+			<if test="pageSize>0 and pageStart>-1">
+				limit #{pageStart},#{pageSize}
+			</if>
   </select>
   <!-- 获取总数量 -->
   <select id="getBorrowCount" parameterType="borrow" resultType="int">
   	 SELECT count(*) FROM tb_borrow r 
   	 LEFT JOIN tb_user u on r.userId=u.id 
   	 LEFT JOIN tb_book b on r.bookId=b.id 
-  	 LEFT JOIN tb_user op on r.operatorId=op.id  	
+  	 LEFT JOIN tb_user op on r.operatorId=op.id  
+  	 	 <where>	
 <if test="bookName!=''and bookName!=null">
 		and b.name like "%${bookName}%"
 	</if>
@@ -59,6 +62,7 @@
 	<if test="operatorName!='' and operatorName!=null">
 		and op.name like "%${operatorName}%"
 	</if>
+	</where>
   </select>
   
 </mapper>
