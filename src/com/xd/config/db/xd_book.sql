@@ -2,21 +2,21 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost_3306
-Source Server Version : 50525
+Source Server Version : 50519
 Source Host           : localhost:3306
 Source Database       : xd_book
 
 Target Server Type    : MYSQL
-Target Server Version : 50525
+Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2015-08-10 22:45:41
+Date: 2015-08-13 17:52:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `tb_book`
+-- Table structure for tb_book
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_book`;
 CREATE TABLE `tb_book` (
@@ -45,7 +45,7 @@ INSERT INTO `tb_book` VALUES ('9', 'T12306', 'sfsda', 'sdf', '45.00', 'dfgz', '0
 INSERT INTO `tb_book` VALUES ('10', 'fd', 'fd', 'dsfa', '545.00', '5qfasd', '0');
 
 -- ----------------------------
--- Table structure for `tb_borrow`
+-- Table structure for tb_borrow
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_borrow`;
 CREATE TABLE `tb_borrow` (
@@ -53,21 +53,24 @@ CREATE TABLE `tb_borrow` (
   `time` datetime NOT NULL COMMENT '借书时间',
   `bookId` int(11) NOT NULL DEFAULT '0' COMMENT '图书id',
   `userId` int(11) NOT NULL DEFAULT '0' COMMENT '用户id',
-  `status` int(11) NOT NULL DEFAULT '0' COMMENT '借,还状态1:借,2:还,3:借申请',
+  `status` int(11) NOT NULL DEFAULT '0' COMMENT '借,还状态1:申请,2:已借,3:驳回,4:已还',
   `operatorId` int(11) NOT NULL COMMENT '经办人',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of tb_borrow
 -- ----------------------------
 INSERT INTO `tb_borrow` VALUES ('1', '2015-08-02 17:37:49', '0', '0', '0', '0');
-INSERT INTO `tb_borrow` VALUES ('2', '2015-08-09 13:01:23', '1', '30', '3', '46');
+INSERT INTO `tb_borrow` VALUES ('2', '2015-08-09 13:01:23', '1', '30', '1', '46');
 INSERT INTO `tb_borrow` VALUES ('3', '2015-08-10 20:42:40', '0', '0', '0', '0');
-INSERT INTO `tb_borrow` VALUES ('4', '2015-08-10 20:52:15', '3', '30', '3', '46');
+INSERT INTO `tb_borrow` VALUES ('4', '2015-08-10 20:52:15', '3', '30', '1', '46');
+INSERT INTO `tb_borrow` VALUES ('5', '2015-08-13 16:59:24', '3', '30', '1', '30');
+INSERT INTO `tb_borrow` VALUES ('6', '2015-08-13 17:01:08', '3', '30', '2', '30');
+INSERT INTO `tb_borrow` VALUES ('7', '2015-08-13 17:51:43', '3', '30', '4', '30');
 
 -- ----------------------------
--- Table structure for `tb_department`
+-- Table structure for tb_department
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_department`;
 CREATE TABLE `tb_department` (
@@ -86,7 +89,7 @@ INSERT INTO `tb_department` VALUES ('4', '产品中心');
 INSERT INTO `tb_department` VALUES ('6', '工程部');
 
 -- ----------------------------
--- Table structure for `tb_manager`
+-- Table structure for tb_manager
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_manager`;
 CREATE TABLE `tb_manager` (
@@ -102,7 +105,7 @@ CREATE TABLE `tb_manager` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `tb_user`
+-- Table structure for tb_user
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE `tb_user` (

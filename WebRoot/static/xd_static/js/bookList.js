@@ -41,7 +41,7 @@ mainModule.controller("bookListController",function($scope,getBookList,pageList)
 	}
 	$scope.borrowBook=function(bookId){
 		$.ajax({
-			url:"../../borrow.it?action=insertBorrow&bookId="+bookId
+			url:"../../borrow.it?action=insertBorrow&bookId="+bookId+"&status=1"
 		}).done(function(data){
 			alert(data.msg)
 		}).fail(function(){

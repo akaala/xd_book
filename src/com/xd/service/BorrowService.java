@@ -43,8 +43,9 @@ public class BorrowService {
 		 map=new HashMap<String, String>();
 		 HttpSession session=request.getSession();
 		 User user=(User)session.getAttribute("user");
-		 borrow.setUserId(user.getId());
-		 borrow.setStatus(3);
+		 borrow.setOperatorId(user.getId());//经办人
+		 //borrow.setUserId(user.getId());
+		 //borrow.setStatus(3);
 		int i=borrowDao.insertBorrow(borrow);
 		if(i>0){
 			map.put("status","success");
@@ -55,8 +56,22 @@ public class BorrowService {
 		}
 		return map;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
-	 * 删除申请,不借书
+	 * 删除申请,不借书  作废
 	 * @return
 	 */
 	public Map<String, String> deleteApplication(Borrow borrow){
@@ -72,7 +87,7 @@ public class BorrowService {
 			return map;
 	}
 	/**
-	 * 更新状态 ,完成借书
+	 * 更新状态 ,完成借书  作废
 	 * @return
 	 */
 	public Map<String, String> updateStatus(Borrow borrow){

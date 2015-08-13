@@ -3,29 +3,8 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="borrow">
-<!-- 插入记录 -->
-	<insert id="insertBorrow" parameterType="borrow">
-		insert into tb_borrow
-		(time,bookId,userId,status,operatorId)
-		values
-		(NOW(),#{bookId},#{userId},#{status},#{operatorId})
-	</insert>
-	<!-- 删除记录 -->
-	<delete id="deleteApplication" parameterType="borrow">
-		delete from tb_borrow WHERE id=#{id};
-	</delete>
-	
-	<!-- 更新状态 ,完成借书-->
-  <update id="updateStatus" parameterType="borrow">
-  	update tb_borrow set status=#{status},operatorId=#{operatorId} where id=#{id}
-  </update>
-  <!-- 获取借阅信息 -->
-  <select id="getBorrowList" parameterType="borrow" resultType="borrow">  
-  	 SELECT r.*,u.name as userName,b.name as bookName, b.number,op.name as operatorName FROM tb_borrow r 
-  	 LEFT JOIN tb_user u on r.userId=u.id 
-  	 LEFT JOIN tb_book b on r.bookId=b.id 
-  	 LEFT JOIN tb_user op on r.operatorId=op.id  	
-  	 <where>
+<sql id="commonWhere">
+	 <where>
   	 		<if test="bookName!=''and bookName!=null">
 				and b.name like "%${bookName}%"
 			</if>
@@ -38,10 +17,39 @@
 			<if test="operatorName!='' and operatorName!=null">
 				and op.name like "%${operatorName}%"
 			</if>
-  	 </where> 
-			<if test="pageSize>0 and pageStart>-1">
-				limit #{pageStart},#{pageSize}
+			<if test="status!='' and status!=0">
+				and r.status=#{status}
 			</if>
+  	 </where>
+</sql>
+<!-- 插入记录 -->
+	<insert id="insertBorrow" parameterType="borrow">
+		insert into tb_borrow
+		(time,bookId,userId,status,operatorId)
+		values
+		(NOW(),#{bookId},#{userId},#{status},#{operatorId})
+	</insert>
+	<!-- 删除记录    作废 -->
+	<delete id="deleteApplication" parameterType="borrow">
+		delete from tb_borrow WHERE id=#{id};
+	</delete>
+	
+	<!-- 更新状态 ,完成借书    作废-->
+  <update id="updateStatus" parameterType="borrow">
+  	update tb_borrow set status=#{status},operatorId=#{operatorId} where id=#{id}
+  </update>
+  <!-- 获取借阅信息 -->
+  <select id="getBorrowList" parameterType="borrow" resultType="borrow">  
+  	 SELECT r.*,u.name as userName,b.name as bookName, b.number,op.name as operatorName FROM 
+  	 tb_borrow r 
+  	 LEFT JOIN tb_user u on r.userId=u.id 
+  	 LEFT JOIN tb_book b on r.bookId=b.id 
+  	 LEFT JOIN tb_user op on r.operatorId=op.id  	
+   	<include refid="commonWhere"></include>
+	ORDER BY r.id DESC
+	<if test="pageSize>0 and pageStart>-1">
+		limit #{pageStart},#{pageSize}
+	</if>
   </select>
   <!-- 获取总数量 -->
   <select id="getBorrowCount" parameterType="borrow" resultType="int">
@@ -49,7 +57,8 @@
   	 LEFT JOIN tb_user u on r.userId=u.id 
   	 LEFT JOIN tb_book b on r.bookId=b.id 
   	 LEFT JOIN tb_user op on r.operatorId=op.id  
-  	 	 <where>	
+  	 <include refid="commonWhere"></include>
+<!--  <where>	
 <if test="bookName!=''and bookName!=null">
 		and b.name like "%${bookName}%"
 	</if>
@@ -62,7 +71,10 @@
 	<if test="operatorName!='' and operatorName!=null">
 		and op.name like "%${operatorName}%"
 	</if>
-	</where>
+	<if test="status!='' and status!=0">
+		and r.status=#{status}
+	</if>
+	</where> -->
   </select>
   
 </mapper>

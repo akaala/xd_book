@@ -4,10 +4,18 @@ mainModule.controller("borrowController",function($scope,pageList,ajaxFail){
 			userName:"",
 			bookName:"",
 			operatorName:"",
+			status:0,
 			pageSize:15,
 			currentPage:1
 	}
 	$scope.page={};
+	$scope.statusData=[
+			{id:0,name:"=全部="},
+			{id:1,name:"申请"},
+			{id:2,name:"已借"},
+			{id:3,name:"驳回"},
+			{id:4,name:"已还"}
+		];
 	$scope.page.pageSize=$scope.borrow.pageSize;
 	function getBorrowList(){
 		$.ajax({
@@ -30,9 +38,9 @@ mainModule.controller("borrowController",function($scope,pageList,ajaxFail){
 		$scope.borrow.currentPage=currentPage;
 		getBorrowList();
 	}
-	$scope.deleteBorrowApp=function(id){
+	$scope.cancleBorrow=function(bookId,userId){
 		$.ajax({
-			url:"../../borrow.it?action=deleteApplication&id="+id
+			url:"../../borrow.it?action=deleteApplication&bookId="+bookId+"&userId="+userId+"&status=3"
 		}).done(function(data){
 			alert(data.msg)
 			if(data.status=="success"){
@@ -40,9 +48,19 @@ mainModule.controller("borrowController",function($scope,pageList,ajaxFail){
 			}			
 		}).fail(ajaxFail.fail);
 	}
-	$scope.borrowBook=function(id){
+	$scope.borrowBook=function(bookId,userId){
 		$.ajax({
-			url:"../../borrow.it?action=updateStatus&id="+id
+			url:"../../borrow.it?action=insertBorrow&bookId="+bookId+"&userId="+userId+"&status=2"
+		}).done(function(data){
+			alert(data.msg)
+			if(data.status=="success"){
+				getBorrowList();
+			}			
+		}).fail(ajaxFail.fail);
+	}
+	$scope.backBook=function(bookId,userId){
+		$.ajax({
+			url:"../../borrow.it?action=insertBorrow&bookId="+bookId+"&userId="+userId+"&status=4"
 		}).done(function(data){
 			alert(data.msg)
 			if(data.status=="success"){
