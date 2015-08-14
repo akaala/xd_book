@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="mainModule">
+  <head>
+  <meta charset="utf-8">
+    <title>借阅信息</title>
+	<link type="text/css" rel="stylesheet" href="../../static/uiFrame/css/pure-min.css" />
+<link type="text/css" rel="stylesheet" href="../../static/xd_static/css/index.css" />
+<script type="text/javascript" src="../../static/uiFrame/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../../static/uiFrame/js/angular.min-1.4.3.js"></script>
+<script type="text/javascript" src="../../static/xd_static/js/myBorrow.js"></script>
+<script type="text/javascript" src="../../static/xd_static/js/directive.js"></script>
+<script type="text/javascript" src="../../static/xd_static/js/service.js"></script>
+
+  </head>
+  
+  <body ng-controller="myBorrowController">
+    <div class="xd-search-area">
+<form class="pure-form">
+    <fieldset>
+        <legend class="currentPage-nav">我的借阅</legend>
+    </fieldset>
+</form> 
+</div>
+<table class="pure-table pure-table-bordered xd-lsit-table xd-lsit-table-hover">
+    <thead>
+        <tr>
+        	<th>序号</th>
+        	<th>编码</th>
+            <th>书名</th>
+             <th>借书人</th>
+             <th>状态</th>
+             <th>申请时间</th>          
+            <td>操作</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="b in borrowList">
+        <td>{{$index+1}}</td>
+            <td>{{b.number}}</td>
+            <td>{{b.bookName}}</td>
+            <td>{{b.userName}}</td>
+            <td>
+            	<label ng-if="b.status==1">申请</label>
+            	<label ng-if="b.status==2">已借</label>
+            	<label ng-if="b.status==3">已还</label>
+           </td>
+           <td>{{b.appTime}}</td>         
+            <td width="250">
+            	<input ng-if="b.status==1" type="button" value="删除" ng-click="deleteData(b.id)" class="pure-button pure-button-primary" />
+           		<input ng-if="b.status>1" type="button" value="无操作" class="pure-button pure-button-disabled" />
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+<pagelist-directive />
+  </body>
+</html>

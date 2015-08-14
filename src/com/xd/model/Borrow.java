@@ -2,7 +2,9 @@ package com.xd.model;
 
 public class Borrow extends BaseModel {
 	private int id;
-	private String time;// 产生数据的时间
+	private String appTime;// 申请时间
+	private String borrowTime;//借书时间
+	private String backTime;//还书时间
 	private int bookId;
 	private int userId;
 	private int status;
@@ -20,12 +22,28 @@ private String operatorName;//经办人名称
 		this.id = id;
 	}
 
-	public String getTime() {
-		return time;
+	public String getAppTime() {
+		return appTime;
 	}
 
-	public void setTime(String time) {
-		this.time = time;
+	public void setAppTime(String appTime) {
+		this.appTime = appTime;
+	}
+
+	public String getBorrowTime() {
+		return borrowTime;
+	}
+
+	public void setBorrowTime(String borrowTime) {
+		this.borrowTime = borrowTime;
+	}
+
+	public String getBackTime() {
+		return backTime;
+	}
+
+	public void setBackTime(String backTime) {
+		this.backTime = backTime;
 	}
 
 	public int getBookId() {

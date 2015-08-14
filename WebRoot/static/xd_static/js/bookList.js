@@ -41,9 +41,10 @@ mainModule.controller("bookListController",function($scope,getBookList,pageList)
 	}
 	$scope.borrowBook=function(bookId){
 		$.ajax({
-			url:"../../borrow.it?action=insertBorrow&bookId="+bookId+"&status=1"
+			url:"../../borrow.it?action=insertBorrow&bookId="+bookId
 		}).done(function(data){
-			alert(data.msg)
+			alert(data.msg);
+			getList();
 		}).fail(function(){
 			alert("服务器连接失败!");
 		})

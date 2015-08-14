@@ -4,6 +4,9 @@ mainModule.service("pageList",function(){
 		var pageSize=page.pageSize;
 		var currentPage=page.currentPage;
 		var totalPage=Math.ceil((totalCount/pageSize));
+		if(totalPage<1){
+			totalPage=1;
+		}
 		var upPage=currentPage-1;
 		if(upPage<1){
 			upPage=1;

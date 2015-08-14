@@ -3,6 +3,8 @@ package com.xd.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,8 +25,8 @@ public class BookController {
 
 	@RequestMapping(params = "action=getBookList", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> getBookList(Book book) {
-		return bookService.getListBook(book);
+	public Map<String, Object> getBookList(Book book,HttpServletRequest request) {
+		return bookService.getListBook(book,request);
 	}
 
 

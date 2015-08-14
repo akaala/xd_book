@@ -45,12 +45,13 @@
             <td>{{b.price}}</td>
             <td>{{b.publisher}}</td>
             <td>
-				<label ng-if="b.userId==0" style="color:red;">未借</label>
-				<label ng-if="b.userId>0">已借</label>
+				<label ng-if="b.status==0" style="color:red;">未借</label>
+				<label ng-if="b.status==1">已借</label>
 			</td>
             <td width="250">
-            	<input ng-if="b.userId==0" type="button" value="借书" ng-click="borrowBook(b.id)" class="pure-button pure-button-primary" />
-            	<input ng-if="b.userId>0" type="button" value="借书" class="pure-button pure-button-disabled" />
+            	<input ng-if="b.status==0&&b.borrowStatus!=1" type="button" value="借书" ng-click="borrowBook(b.id)" class="pure-button pure-button-primary" />
+            	<input ng-if="b.status==0&&b.borrowStatus==1" type="button" value="已申请" class="pure-button pure-button-disabled" />
+            	<input ng-if="b.status==1" type="button" value="借书" class="pure-button pure-button-disabled" />
             </td>
         </tr>
 

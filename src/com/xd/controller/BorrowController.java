@@ -39,6 +39,25 @@ public class BorrowController {
 		return map;
 	}
 	/**
+	 * 获取我的borrow列表
+	 * @param borrow
+	 * @return
+	 */	
+	@RequestMapping(params="action=getMyBorrowList",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> getMyBorrowList(Borrow borrow,HttpServletRequest request){
+		List<Borrow> list=borrowService.getMyBorrowList(borrow,request);
+		int totalCount=borrowService.getMyBorrowCount(borrow,request);
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("totalCount", totalCount);
+		map.put("currentPage", borrow.getcurrentPage());
+		map.put("list", list);
+		return map;
+	}
+	
+	
+	
+	/**
 	 * 插入数据
 	 * @param borrow
 	 * @return
@@ -52,10 +71,10 @@ public class BorrowController {
 	 * 删除申请,不借书
 	 * @return
 	 */
-	@RequestMapping(params="action=deleteApplication",method=RequestMethod.GET)
+	@RequestMapping(params="action=deleteBorrow",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String, String> deleteApplication(Borrow borrow){
-		return borrowService.deleteApplication(borrow);
+	public Map<String, String> deleteBorrow(Borrow borrow){
+		return borrowService.deleteBorrow(borrow);
 	}
 	/**
 	 * 更新状态 ,完成借书
@@ -63,8 +82,8 @@ public class BorrowController {
 	 */
 	@RequestMapping(params="action=updateStatus",method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String, String> updateStatus(Borrow borrow){
-		return borrowService.updateStatus(borrow);
+	public Map<String, String> updateStatus(Borrow borrow,HttpServletRequest request){
+		return borrowService.updateStatus(borrow,request);
 	}
 	
 	

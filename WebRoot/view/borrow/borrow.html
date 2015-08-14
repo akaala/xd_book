@@ -40,8 +40,10 @@
         	<th>编码</th>
             <th>书名</th>
              <th>借书人</th>
-             <th>时间</th>
              <th>状态</th>
+             <th>申请时间</th>
+             <th>借书时间</th>
+             <th>还书时间</th>
             <th>经办人</th>
             <td>操作</td>
         </tr>
@@ -53,31 +55,28 @@
             <td>{{b.number}}</td>
             <td>{{b.bookName}}</td>
             <td>{{b.userName}}</td>
-            <td>{{b.time}}</td>
             <td>
             	<label ng-if="b.status==1">申请</label>
             	<label ng-if="b.status==2">已借</label>
-            	<label ng-if="b.status==3">驳回</label>
-            	<label ng-if="b.status==4">已还</label>
+            	<label ng-if="b.status==3">已还</label>
+            	<!-- <label ng-if="b.status==4">驳回</label> -->
            </td>
+           <td>{{b.appTime}}</td>
+           <td>{{b.borrowTime}}</td>
+           <td>{{b.backTime}}</td>
             <td>{{b.operatorName}}</td>
             <td width="250">
             	<label ng-if="b.status==1">
-	            	<input type="button" value="借书" ng-click="borrowBook(b.bookId,b.userId)" class="pure-button pure-button-primary" />
-	            	<input type="button" value="驳回" ng-click="cancleBorrow(b.bookId,b.userId)" class="button-success pure-button" />
+	            	<input type="button" value="借书" ng-click="borrowBook(b.id,b.bookId)" class="pure-button pure-button-primary" />
             	</label>
             	<label ng-if="b.status==2">
-	            	<input type="button" value="还书" ng-click="backBook(b.bookId,b.userId)" class="button-warning pure-button" />
+	            	<input type="button" value="还书" ng-click="backBook(b.id,b.bookId)" class="button-warning pure-button" />
 	            	<!-- <input type="button" value="驳回" ng-click="cancleBorrow(b.bookId,b.userId)" class="button-success pure-button" /> -->
             	</label>
             	<label ng-if="b.status==3">
-	            	<!-- <input type="button" value="同意" ng-click="borrowBook(b.bookId,b.userId)" class="pure-button pure-button-primary" />
-	            	<input type="button" value="驳回" ng-click="cancleBorrow(b.bookId,b.userId)" class="button-success pure-button" /> -->
+						<input type="button" value="无操作" class="pure-button pure-button-disabled" />
             	</label>
-            	<label ng-if="b.status==4">
-	            	<!-- <input type="button" value="同意" ng-click="borrowBook(b.bookId,b.userId)" class="pure-button pure-button-primary" />
-	            	<input type="button" value="驳回" ng-click="cancleBorrow(b.bookId,b.userId)" class="button-success pure-button" /> -->
-            	</label>
+            	<!-- <input type="button" value="删除" ng-click="deleteData(b.id)" class="button-success pure-button" /> -->
             </td>
         </tr>
 

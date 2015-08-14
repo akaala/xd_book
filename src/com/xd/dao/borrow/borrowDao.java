@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.taglibs.standard.lang.jstl.Literal;
 
 import com.xd.dao.SqlSessionDao;
+import com.xd.model.Book;
 import com.xd.model.Borrow;
 public class BorrowDao {
 	/**
@@ -56,6 +57,39 @@ public class BorrowDao {
 		}
 		return i;
 	}
+	/**
+	 * 获取单本书
+	 */
+	public Book getBook(Book book){
+		Book b=new Book();
+		SqlSession session=getSession();
+		try {
+			b=session.selectOne("borrow.getBook",book);
+		} catch (Exception e) {
+			System.out.println("获取书籍是否被借走时异常.....");
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return b;
+	}
+	
+	/**
+	 * 获取单本书
+	 */
+	public Borrow getBorrow(Borrow borrow){
+		Borrow b=new Borrow();
+		SqlSession session=getSession();
+		try {
+			b=session.selectOne("borrow.getBorrow",borrow);
+		}catch (Exception e) {
+			System.out.println("获取单条借阅信息时异常.....");
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return b;
+	}
 	
 	/**
 	 * 插入数据
@@ -77,14 +111,14 @@ public class BorrowDao {
 		return i;
 	}
 	/**
-	 * 删除申请,不借书
+	 * 删除
 	 * @return
 	 */
-	public int deleteApplication(Borrow borrow){
+	public int deleteBorrow(Borrow borrow){
 		int i=-1;
 		SqlSession session=getSession();
 		try {
-			i=session.delete("borrow.deleteApplication",borrow);
+			i=session.delete("borrow.deleteBorrow",borrow);
 			session.commit();
 		} catch (Exception e) {
 			System.out.println("删除数据时异常.....");
@@ -102,6 +136,15 @@ public class BorrowDao {
 		int i=-1;
 		SqlSession session=getSession();
 		try {
+			Book book=new Book();
+			book.setId(borrow.getBookId());
+			if(borrow.getStatus()==2){//修改书籍表的userId
+				book.setStatus(1);
+				i=session.update("borrow.updateBook",book);
+			}else if(borrow.getStatus()==3) {
+				book.setStatus(0);
+				i=session.update("borrow.updateBook",book);
+			}
 			i=session.update("borrow.updateStatus",borrow);
 			session.commit();
 		} catch (Exception e) {

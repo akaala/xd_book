@@ -4,10 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Service;
 
 import com.xd.dao.book.BookDao;
 import com.xd.model.Book;
+import com.xd.model.User;
 
 @Service
 public class BookService {
@@ -22,9 +26,16 @@ public class BookService {
 	 * 书籍列表
 	 * @return
 	 */
-	public Map<String, Object> getListBook(Book book){
+	public Map<String, Object> getListBook(Book book,HttpServletRequest request){
 		book.setPageStart(book.getcurrentPage());
+		HttpSession session=request.getSession();
+		/**
+		 * TODO sql语句有问题
+		 */
+		User user=(User)session.getAttribute("user");
+		book.setUserId(user.getId());
 		List<Book> list=bookDao.getListBook(book);
+		
 		Map<String, Object> map=new HashMap<String, Object>();
 		int totalCount=bookDao.getBookCount(book);
 		map.put("totalCount", totalCount);

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50519
 File Encoding         : 65001
 
-Date: 2015-08-13 17:52:20
+Date: 2015-08-14 18:05:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,7 +26,7 @@ CREATE TABLE `tb_book` (
   `author` varchar(50) COLLATE utf8_bin DEFAULT '' COMMENT '作者',
   `price` float(11,2) DEFAULT '0.00' COMMENT '价格',
   `publisher` varchar(50) COLLATE utf8_bin DEFAULT '出版社',
-  `userId` tinyint(4) NOT NULL DEFAULT '0' COMMENT '书本是否处于借阅状态.0表示未借出.',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '书本是否处于借阅状态.0表示未借出.1:已借出',
   PRIMARY KEY (`id`),
   UNIQUE KEY `number` (`number`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -34,8 +34,8 @@ CREATE TABLE `tb_book` (
 -- ----------------------------
 -- Records of tb_book
 -- ----------------------------
-INSERT INTO `tb_book` VALUES ('1', 'T123', 'java编程思想', '诸葛亮', '25.00', '机械出版社', '30');
-INSERT INTO `tb_book` VALUES ('2', 'T124', 'angularJs权威指南', '郭忠跃', '82.60', '清华大学', '46');
+INSERT INTO `tb_book` VALUES ('1', 'T123', 'java编程思想', '诸葛亮', '25.00', '机械出版社', '1');
+INSERT INTO `tb_book` VALUES ('2', 'T124', 'angularJs权威指南', '郭忠跃', '82.60', '清华大学', '1');
 INSERT INTO `tb_book` VALUES ('3', '是豆腐干豆腐', '是的发送到', '是的发送到', '25.00', '士大夫撒', '0');
 INSERT INTO `tb_book` VALUES ('4', 'T120', 'css权威指南', '郭忠跃', '500.00', '中心出版社', '0');
 INSERT INTO `tb_book` VALUES ('5', 'sad', '防守打法', '都发送', '56.00', '地方', '0');
@@ -50,24 +50,26 @@ INSERT INTO `tb_book` VALUES ('10', 'fd', 'fd', 'dsfa', '545.00', '5qfasd', '0')
 DROP TABLE IF EXISTS `tb_borrow`;
 CREATE TABLE `tb_borrow` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `time` datetime NOT NULL COMMENT '借书时间',
+  `appTime` datetime NOT NULL COMMENT '借书申请时间',
+  `borrowTime` datetime NOT NULL COMMENT '借书时间',
+  `backTime` datetime NOT NULL COMMENT '还书时间',
   `bookId` int(11) NOT NULL DEFAULT '0' COMMENT '图书id',
   `userId` int(11) NOT NULL DEFAULT '0' COMMENT '用户id',
-  `status` int(11) NOT NULL DEFAULT '0' COMMENT '借,还状态1:申请,2:已借,3:驳回,4:已还',
+  `status` int(11) NOT NULL DEFAULT '0' COMMENT '借,还状态1:申请,2:已借,3:已还',
   `operatorId` int(11) NOT NULL COMMENT '经办人',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of tb_borrow
 -- ----------------------------
-INSERT INTO `tb_borrow` VALUES ('1', '2015-08-02 17:37:49', '0', '0', '0', '0');
-INSERT INTO `tb_borrow` VALUES ('2', '2015-08-09 13:01:23', '1', '30', '1', '46');
-INSERT INTO `tb_borrow` VALUES ('3', '2015-08-10 20:42:40', '0', '0', '0', '0');
-INSERT INTO `tb_borrow` VALUES ('4', '2015-08-10 20:52:15', '3', '30', '1', '46');
-INSERT INTO `tb_borrow` VALUES ('5', '2015-08-13 16:59:24', '3', '30', '1', '30');
-INSERT INTO `tb_borrow` VALUES ('6', '2015-08-13 17:01:08', '3', '30', '2', '30');
-INSERT INTO `tb_borrow` VALUES ('7', '2015-08-13 17:51:43', '3', '30', '4', '30');
+INSERT INTO `tb_borrow` VALUES ('21', '2015-08-14 16:05:37', '2015-08-14 16:05:57', '2015-08-14 16:08:07', '3', '30', '3', '30');
+INSERT INTO `tb_borrow` VALUES ('23', '2015-08-14 16:40:51', '2015-08-14 16:40:51', '2015-08-14 16:40:51', '3', '30', '1', '30');
+INSERT INTO `tb_borrow` VALUES ('24', '2015-08-14 16:42:00', '2015-08-14 16:42:00', '2015-08-14 16:42:00', '3', '30', '1', '30');
+INSERT INTO `tb_borrow` VALUES ('25', '2015-08-14 16:51:18', '2015-08-14 16:51:18', '2015-08-14 16:51:18', '4', '30', '1', '30');
+INSERT INTO `tb_borrow` VALUES ('26', '2015-08-14 18:00:12', '2015-08-14 18:00:12', '2015-08-14 18:00:12', '3', '30', '1', '30');
+INSERT INTO `tb_borrow` VALUES ('27', '2015-08-14 18:00:52', '2015-08-14 18:00:52', '2015-08-14 18:00:52', '3', '30', '1', '30');
+INSERT INTO `tb_borrow` VALUES ('28', '2015-08-14 18:01:06', '2015-08-14 18:01:06', '2015-08-14 18:01:06', '5', '30', '1', '30');
 
 -- ----------------------------
 -- Table structure for tb_department
@@ -86,7 +88,7 @@ INSERT INTO `tb_department` VALUES ('1', '研发部');
 INSERT INTO `tb_department` VALUES ('2', '市场部');
 INSERT INTO `tb_department` VALUES ('3', '财务部');
 INSERT INTO `tb_department` VALUES ('4', '产品中心');
-INSERT INTO `tb_department` VALUES ('6', '工程部');
+INSERT INTO `tb_department` VALUES ('6', '工程部1');
 
 -- ----------------------------
 -- Table structure for tb_manager

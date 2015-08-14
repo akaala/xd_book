@@ -13,9 +13,11 @@ public class Book extends BaseModel{
 	//出版社
 	private String publisher;
 	//图书借阅人id
+	private int status;
+	//借书记录状态
+private int borrowStatus;
+	//申请人
 	private int userId;
-	//图书借阅人姓名
-	private String userName;
 	
 	public int getId() {
 		return id;
@@ -53,18 +55,22 @@ public class Book extends BaseModel{
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	public int getUserId() {
 		return userId;
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public String getUserName() {
-		return userName;
+	public int getBorrowStatus() {
+		return borrowStatus;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setBorrowStatus(int borrowStatus) {
+		this.borrowStatus = borrowStatus;
 	}
-	
-	
 }

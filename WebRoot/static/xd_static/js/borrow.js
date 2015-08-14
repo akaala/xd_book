@@ -13,8 +13,7 @@ mainModule.controller("borrowController",function($scope,pageList,ajaxFail){
 			{id:0,name:"=全部="},
 			{id:1,name:"申请"},
 			{id:2,name:"已借"},
-			{id:3,name:"驳回"},
-			{id:4,name:"已还"}
+			{id:3,name:"已还"}
 		];
 	$scope.page.pageSize=$scope.borrow.pageSize;
 	function getBorrowList(){
@@ -48,9 +47,9 @@ mainModule.controller("borrowController",function($scope,pageList,ajaxFail){
 			}			
 		}).fail(ajaxFail.fail);
 	}
-	$scope.borrowBook=function(bookId,userId){
+	$scope.borrowBook=function(id,bookId){
 		$.ajax({
-			url:"../../borrow.it?action=insertBorrow&bookId="+bookId+"&userId="+userId+"&status=2"
+			url:"../../borrow.it?action=updateStatus&id="+id+"&status=2&bookId="+bookId
 		}).done(function(data){
 			alert(data.msg)
 			if(data.status=="success"){
@@ -58,9 +57,19 @@ mainModule.controller("borrowController",function($scope,pageList,ajaxFail){
 			}			
 		}).fail(ajaxFail.fail);
 	}
-	$scope.backBook=function(bookId,userId){
+	$scope.backBook=function(id,bookId){
 		$.ajax({
-			url:"../../borrow.it?action=insertBorrow&bookId="+bookId+"&userId="+userId+"&status=4"
+			url:"../../borrow.it?action=updateStatus&id="+id+"&status=3&bookId="+bookId
+		}).done(function(data){
+			alert(data.msg)
+			if(data.status=="success"){
+				getBorrowList();
+			}			
+		}).fail(ajaxFail.fail);
+	}
+	$scope.deleteData=function(id){
+		$.ajax({
+			url:"../../borrow.it?action=deleteBorrow&id="+id
 		}).done(function(data){
 			alert(data.msg)
 			if(data.status=="success"){
