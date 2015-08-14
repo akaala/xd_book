@@ -65,9 +65,9 @@
            <td>{{b.borrowTime}}</td>
            <td>{{b.backTime}}</td>
             <td>{{b.operatorName}}</td>
-            <td width="250">
+            <td width="100">
             	<label ng-if="b.status==1">
-	            	<input type="button" value="借书" ng-click="borrowBook(b.id,b.bookId)" class="pure-button pure-button-primary" />
+	            	<input type="button" value="借出" ng-click="borrowBook(b.id,b.bookId)" class="pure-button pure-button-primary" />
             	</label>
             	<label ng-if="b.status==2">
 	            	<input type="button" value="还书" ng-click="backBook(b.id,b.bookId)" class="button-warning pure-button" />

@@ -2,21 +2,21 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost_3306
-Source Server Version : 50519
+Source Server Version : 50525
 Source Host           : localhost:3306
 Source Database       : xd_book
 
 Target Server Type    : MYSQL
-Target Server Version : 50519
+Target Server Version : 50525
 File Encoding         : 65001
 
-Date: 2015-08-14 18:05:19
+Date: 2015-08-14 22:30:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for tb_book
+-- Table structure for `tb_book`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_book`;
 CREATE TABLE `tb_book` (
@@ -36,7 +36,7 @@ CREATE TABLE `tb_book` (
 -- ----------------------------
 INSERT INTO `tb_book` VALUES ('1', 'T123', 'java编程思想', '诸葛亮', '25.00', '机械出版社', '1');
 INSERT INTO `tb_book` VALUES ('2', 'T124', 'angularJs权威指南', '郭忠跃', '82.60', '清华大学', '1');
-INSERT INTO `tb_book` VALUES ('3', '是豆腐干豆腐', '是的发送到', '是的发送到', '25.00', '士大夫撒', '0');
+INSERT INTO `tb_book` VALUES ('3', '是豆腐干豆腐', '是的发送到', '是的发送到', '25.00', '士大夫撒', '1');
 INSERT INTO `tb_book` VALUES ('4', 'T120', 'css权威指南', '郭忠跃', '500.00', '中心出版社', '0');
 INSERT INTO `tb_book` VALUES ('5', 'sad', '防守打法', '都发送', '56.00', '地方', '0');
 INSERT INTO `tb_book` VALUES ('6', '22323', '问问', '发到的', '4544.00', '水电费', '0');
@@ -45,7 +45,7 @@ INSERT INTO `tb_book` VALUES ('9', 'T12306', 'sfsda', 'sdf', '45.00', 'dfgz', '0
 INSERT INTO `tb_book` VALUES ('10', 'fd', 'fd', 'dsfa', '545.00', '5qfasd', '0');
 
 -- ----------------------------
--- Table structure for tb_borrow
+-- Table structure for `tb_borrow`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_borrow`;
 CREATE TABLE `tb_borrow` (
@@ -58,21 +58,17 @@ CREATE TABLE `tb_borrow` (
   `status` int(11) NOT NULL DEFAULT '0' COMMENT '借,还状态1:申请,2:已借,3:已还',
   `operatorId` int(11) NOT NULL COMMENT '经办人',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of tb_borrow
 -- ----------------------------
-INSERT INTO `tb_borrow` VALUES ('21', '2015-08-14 16:05:37', '2015-08-14 16:05:57', '2015-08-14 16:08:07', '3', '30', '3', '30');
-INSERT INTO `tb_borrow` VALUES ('23', '2015-08-14 16:40:51', '2015-08-14 16:40:51', '2015-08-14 16:40:51', '3', '30', '1', '30');
-INSERT INTO `tb_borrow` VALUES ('24', '2015-08-14 16:42:00', '2015-08-14 16:42:00', '2015-08-14 16:42:00', '3', '30', '1', '30');
-INSERT INTO `tb_borrow` VALUES ('25', '2015-08-14 16:51:18', '2015-08-14 16:51:18', '2015-08-14 16:51:18', '4', '30', '1', '30');
-INSERT INTO `tb_borrow` VALUES ('26', '2015-08-14 18:00:12', '2015-08-14 18:00:12', '2015-08-14 18:00:12', '3', '30', '1', '30');
-INSERT INTO `tb_borrow` VALUES ('27', '2015-08-14 18:00:52', '2015-08-14 18:00:52', '2015-08-14 18:00:52', '3', '30', '1', '30');
-INSERT INTO `tb_borrow` VALUES ('28', '2015-08-14 18:01:06', '2015-08-14 18:01:06', '2015-08-14 18:01:06', '5', '30', '1', '30');
+INSERT INTO `tb_borrow` VALUES ('30', '2015-08-14 20:14:07', '2015-08-14 20:15:21', '2015-08-14 20:15:21', '3', '30', '2', '30');
+INSERT INTO `tb_borrow` VALUES ('31', '2015-08-14 20:20:33', '2015-08-14 20:20:33', '2015-08-14 20:20:33', '1', '30', '2', '30');
+INSERT INTO `tb_borrow` VALUES ('32', '2015-08-14 20:20:33', '2015-08-14 20:20:33', '2015-08-14 20:20:33', '2', '30', '2', '30');
 
 -- ----------------------------
--- Table structure for tb_department
+-- Table structure for `tb_department`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_department`;
 CREATE TABLE `tb_department` (
@@ -91,7 +87,7 @@ INSERT INTO `tb_department` VALUES ('4', '产品中心');
 INSERT INTO `tb_department` VALUES ('6', '工程部1');
 
 -- ----------------------------
--- Table structure for tb_manager
+-- Table structure for `tb_manager`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_manager`;
 CREATE TABLE `tb_manager` (
@@ -107,7 +103,7 @@ CREATE TABLE `tb_manager` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for tb_user
+-- Table structure for `tb_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE `tb_user` (

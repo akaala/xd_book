@@ -46,7 +46,7 @@
             	<label ng-if="b.status==3">已还</label>
            </td>
            <td>{{b.appTime}}</td>         
-            <td width="250">
+            <td width="100">
             	<input ng-if="b.status==1" type="button" value="删除" ng-click="deleteData(b.id)" class="pure-button pure-button-primary" />
            		<input ng-if="b.status>1" type="button" value="无操作" class="pure-button pure-button-disabled" />
             </td>
