@@ -1,0 +1,189 @@
+body,ul,li{
+	margin: 0;
+	padding: 0;
+}
+ul,li{
+	list-style: none;
+}
+body{
+	font-size: 14px;
+}
+.xd-left,.xd-right {
+	top: 0;
+}
+.xd-left {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background-color: #191818;
+	width: 160px;
+	overflow: auto;
+}
+.xd-head,
+.xd-right{
+	left: 160px;
+}
+.xd-head{
+	position: absolute;
+	top:0;
+	right:0;
+	height:30px;
+	line-height: 30px;
+	background-color: #191818;
+	z-index: 1000;
+	min-width:500px;
+	padding-right:20px;
+}
+.xd-head-item{
+	float:right;
+	display: block;
+	padding: 0px 10px;
+	line-height: inherit;
+	color:white;
+	cursor: pointer;
+}
+.xd-head-item:hover{
+	text-decoration: underline;
+}
+.xd-right {
+	position: absolute;
+	right: 0;	
+	bottom:0;
+	min-width: 900px;
+	top:30px;
+	overflow: hidden;
+}
+.xd-menu-title {
+	color: #fff;
+	line-height: 30px;
+	text-indent: 30px;
+	padding: 10px 0;
+	border-bottom: 1px solid #333;
+}
+.xd-menu-box {
+	
+}
+.xd-menu-item-fgx {
+	border-top:1px solid #333;
+}
+.xd-menu-text {
+	color: #999;
+	line-height: 50px;
+	text-indent: 30px;
+	display: block;
+	cursor: pointer;
+}
+.xd-menu-text:hover,
+.xdMenuItemHover {
+	background-color: #333;
+	color: #fff;
+}
+
+/* 按钮 */
+ .button-success,
+ .button-error,
+ .button-warning,
+ .button-secondary {
+     color: white;
+     border-radius: 4px;
+     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+ }
+
+ .button-success {
+     background: rgb(28, 184, 65); /* this is a green */
+ }
+
+ .button-error {
+     background: rgb(202, 60, 60); /* this is a maroon */
+ }
+
+ .button-warning {
+     background: rgb(223, 117, 20); /* this is an orange */
+ }
+
+ .button-secondary {
+     background: rgb(66, 184, 221); /* this is a light blue */
+ }
+
+
+/*列表  */
+.xd-lsit-table{
+	width:100%;
+}
+.pure-form select{
+	height: 2.6em;
+}
+.xd-search-area{
+	padding:20px;
+}
+.pure-button{
+	font-size: 85%;
+}
+.pure-form legend.currentPage-nav{
+	color:green;
+}
+.pure-table td, .pure-table th{
+	padding:0.3em 1em;
+}
+
+.xd-lsit-table-hover tbody tr:hover{
+	background-color: #fbf2d9;
+}
+.xd-userManget-table tbody tr:hover .SetManagerBtn{
+	display: block;
+}
+.SetManagerBtn{
+	display: none;
+	float:right;
+}
+.pullRight{
+	float:right;
+}
+
+/*分页  */
+.xd_pageList{
+	overflow:hidden;
+	border:1px solid #ccc;
+	border-radius: 5px;
+	padding: 0 10px;
+	font-size: 0;
+	text-align: right;
+	margin: 10px 0 20px 0;
+}
+.xd_pageList a,
+.xd_pageList span{
+	display: block;
+	float: right;
+	padding:6px 10px;
+	font-size: 14px;
+}
+.xd_pageList .firstPage,
+.xd_pageList .nextPage{
+	border-left:1px solid #ccc;	
+}
+.xd_pageList .firstPage,
+.xd_pageList .upPage,
+.xd_pageList .nextPage,
+.xd_pageList .lastPage{
+	color:#337ab7;
+	border-right:1px solid #ccc;	
+	cursor: pointer;	
+}
+.xd_pageList .firstPage:hover,
+.xd_pageList .upPage:hover,
+.xd_pageList .nextPage:hover,
+.xd_pageList .lastPage:hover{
+	text-decoration: underline;
+}
+
+
+.xd_pageList .currentPage,
+.xd_pageList .totalpage{
+color:#c56a10;
+
+	}
+
+.btnCenter{
+	text-align: center;
+	padding: 10px 0;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="mainModule">
+  <head>
+  <meta charset="utf-8">
+    <title>借阅信息</title>
+	<link type="text/css" rel="stylesheet" href="../../static/uiFrame/css/pure-min.css" />
+<link type="text/css" rel="stylesheet" href="../../static/xd_static/css/index.css" />
+<script type="text/javascript" src="../../static/uiFrame/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../../static/uiFrame/js/angular.min-1.4.3.js"></script>
+<script type="text/javascript" src="../../static/xd_static/js/borrow.js"></script>
+<script type="text/javascript" src="../../static/xd_static/js/directive.js"></script>
+<script type="text/javascript" src="../../static/xd_static/js/service.js"></script>
+
+  </head>
+  
+  <body ng-controller="borrowController">
+    <div class="xd-search-area">
+<form class="pure-form">
+    <fieldset>
+        <legend class="currentPage-nav">借阅查询</legend>
+        <input type="text" placeholder="书名" ng-model="borrow.bookName">
+ 		<input type="text" placeholder="借书人" ng-model="borrow.userName">
+ 		<input type="text" placeholder="经办人" ng-model="borrow.operatorName">
+ 		<select ng-options="option.id as option.name for option in statusData" ng-model="borrow.status"></select>
+ 		<!-- <select ng-model="borrow.status">
+ 			<option value="0">=全部=</option>
+ 			<option value="1">申请</option>
+ 			<option value="2">已借</option>
+ 			<option value="3">驳回</option>
+ 			<option value="4">已还</option> 			
+ 		</select> -->
+        <button type="button" class="pure-button pure-button-primary" ng-click="serachList()">查询</button>
+    </fieldset>
+</form> 
+</div>
+<table class="pure-table pure-table-bordered xd-lsit-table xd-lsit-table-hover">
+    <thead>
+        <tr>
+        	<th>序号</th>
+        	<th>编码</th>
+            <th>书名</th>
+             <th>借书人</th>
+             <th>状态</th>
+             <th>申请时间</th>
+             <th>借书时间</th>
+             <th>还书时间</th>
+            <th>经办人</th>
+            <td>操作</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="b in borrowList">
+        <td>{{$index+1}}</td>
+            <td>{{b.number}}</td>
+            <td>{{b.bookName}}</td>
+            <td>{{b.userName}}</td>
+            <td>
+            	<label ng-if="b.status==1">申请</label>
+            	<label ng-if="b.status==2">已借</label>
+            	<label ng-if="b.status==3">已还</label>
+            	<!-- <label ng-if="b.status==4">驳回</label> -->
+           </td>
+           <td>{{b.appTime}}</td>
+           <td>{{b.borrowTime}}</td>
+           <td>{{b.backTime}}</td>
+            <td>{{b.operatorName}}</td>
+            <td width="100">
+            	<label ng-if="b.status==1">
+	            	<input type="button" value="借出" ng-click="borrowBook(b.id,b.bookId)" class="pure-button pure-button-primary" />
+            	</label>
+            	<label ng-if="b.status==2">
+	            	<input type="button" value="还书" ng-click="backBook(b.id,b.bookId)" class="button-warning pure-button" />
+	            	<!-- <input type="button" value="驳回" ng-click="cancleBorrow(b.bookId,b.userId)" class="button-success pure-button" /> -->
+            	</label>
+            	<label ng-if="b.status==3">
+						<input type="button" value="无操作" class="pure-button pure-button-disabled" />
+            	</label>
+            	<!-- <input type="button" value="删除" ng-click="deleteData(b.id)" class="button-success pure-button" /> -->
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+<pagelist-directive />
+  </body>
+</html>

@@ -1,0 +1,47 @@
+.pure-form-aligned .pure-control-group label{
+	width:3em;
+}
+.login-form-box,
+.register-form-box{
+	background-color:rgba(255,255,255,0.7);
+	position:fixed;
+	border:1px solid #fff;
+	border-radius:5px;
+	top:40%;
+	left:50%;
+	padding:20px;
+}
+.login-form-box{
+	padding:20px 50px 20px 20px; 
+	margin-left: -185px;
+	margin-top: -80px;
+}
+.forget-password{
+	font-size:12px;
+	color:#b77308;
+	text-decoration: none;
+	float:right;
+	padding-top:21px;
+}
+.register{
+	margin-left: 20px;
+}
+
+.forget-password:hover{
+	text-decoration: underline;
+	color:#df670f;
+}
+
+.register-form-box{
+	width:500px;
+	margin-left: -270px;
+	margin-top: -160px;
+	left:-1000px;
+	
+}
+.loginNotice{
+	color:red;
+	margin: 0;
+	padding: 0;
+	font-size:13px;
+}

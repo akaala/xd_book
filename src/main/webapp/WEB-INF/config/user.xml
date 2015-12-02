@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+    <select id="queryUser" parameterType="user" resultType="user">
+        select * from tb_user 
+		<where>
+			<if test="id !=0">
+				id=#{id}
+			</if>
+			<if test="name !=null and name !='' ">
+				and name like '%${name}%' 
+			</if>
+			<if test="departId!=0">
+				and departId =#{departId}
+			</if>		
+			<if test="loginName!='' and loginName!=null">
+				and loginName=#{loginName}
+			</if>
+			<if test="password!=null and password !='' ">
+				and password=#{password}
+			</if>
+		</where>
+		 <if test="pageSize>0 and pageStart>-1">
+				limit #{pageStart},#{pageSize}
+			</if>
+    </select>
+    <select id="getUserCount"  parameterType="user" resultType="int">
+    	select count(*) from tb_user 
+    		<where>
+			<if test="id !=0">
+				id=#{id}
+			</if>
+			<if test="name !=null and name !='' ">
+				and name like '%${name}%' 
+			</if>
+			<if test="departId!=0">
+				and departId =#{departId}
+			</if>		
+			<if test="loginName!='' and loginName!=null">
+				and loginName=#{loginName}
+			</if>
+			<if test="password!=null and password !='' ">
+				and password=#{password}
+			</if>
+			<if test="status !=null and status !='' ">
+				and status=#{status}
+			</if>		
+		</where>
+    </select>
+    <insert id="insertUser" parameterType="user" useGeneratedKeys="true" keyProperty="id" >
+    	insert into tb_user
+    	(name,departId,job,birth,entry,password,loginName)
+    	values
+    	(#{name},#{departId},#{job},#{birth},#{entry},#{password},#{loginName})
+    </insert>
+     <update id="updateUser" parameterType="user">
+    	update into set 
+    	name=#{name},
+    	departId=#{departId},
+    	job=#{job},
+    	birth=#{birth},
+    	entry=#{entry},
+    	password=#{password},
+    	loginName=#{loginName}
+    	where id=#{id}
+    </update> 
+    <select id="getDepart" resultType="department">
+    	select id,name from tb_department;
+    </select>
+    <!-- 删除用户 -->
+    <delete id="deleteUser" parameterType="user">
+    	delete from tb_user where id=#{id}
+    </delete>
+    <!-- 检查用户是否有未还的书 -->
+    <select id="checkUserForDelete" parameterType="user" resultType="int">
+    select count(*) from tb_book where userId=#{id}
+    </select>
+    <!-- 审核通过 -->
+    <update id="yesUserStatus" parameterType="int">
+    	update tb_user set status=1 WHERE id=#{id};
+    </update>
+     <!-- 取消审核 -->
+    <update id="noUserStatus" parameterType="int">
+    	update tb_user set status=0 WHERE id=#{id};
+    </update>
+    <!-- 设置管理员 -->
+    <update id="setManager" parameterType="int">
+    	update tb_user set manager=1 WHERE id=#{id};
+    </update>
+    <!-- 取消管理员 -->
+    <update id="cancelManager" parameterType="int">
+    	update tb_user set manager=0 WHERE id=#{id};
+    </update>
+    
+</mapper>
