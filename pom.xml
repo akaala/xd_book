@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ctrip.framework</groupId>
-    <artifactId>xd_book</artifactId>
+    <artifactId>book_management</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <dependencies>
@@ -72,6 +72,9 @@
             <resource>
                 <directory>WebRoot/WEB-INF/lib</directory>
             </resource>
+                <resource>
+                    <directory>src/main/resources</directory>
+                </resource>
         </resources>
         <plugins>
             <plugin>
@@ -84,11 +87,6 @@
                     <encoding>utf8</encoding>
                 </configuration>
             </plugin>
-            <!--Configure stat war -->
-            <plugin>
-                <groupId>com.keyboardsamurais.maven</groupId>
-                <artifactId>maven-timestamp-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -96,9 +94,8 @@
                 <configuration>
                     <webXml>src\main\webapp\WEB-INF\web.xml</webXml>
                     <!--<webResources>-->
-                        <!--<resource>src/main/java/com/xd/config</resource>-->
+                        <!--<resource>src\main/resources</resource>-->
                         <!--<resource>-->
-                        <!--<directory>${project.basedir}/conf/${package.environment}</directory>-->
                         <!--<targetPath>WEB-INF/classes</targetPath>-->
                         <!--<includes>-->
                         <!--<include>*</include>-->

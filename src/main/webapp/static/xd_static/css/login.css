@@ -45,3 +45,21 @@
 	padding: 0;
 	font-size:13px;
 }
+
+.site-footer {
+	padding-top: 2rem;
+	margin-top: 2rem;
+	border-top: solid 1px #eff0f1;
+	z-index: 1000;}
+
+.site-footer-owner {
+	display: block;
+	font-weight: bold;
+}
+
+.site-footer-credits {
+	display: block;
+	color: #819198;
+	text-align:center;
+	padding-top: 10px;
+}

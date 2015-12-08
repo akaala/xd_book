@@ -135,6 +135,9 @@ public class UserService {
 	 */
 private String insertUser(User user){
 	String result;
+
+	// MD5 encrypt
+	user.setPassword(getMD5String(user.getPassword()));
 	if(user.getEntry().equals("")){
 		user.setEntry(null);
 	}

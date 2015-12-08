@@ -34,15 +34,9 @@ CREATE TABLE `tb_book` (
 -- ----------------------------
 -- Records of tb_book
 -- ----------------------------
-INSERT INTO `tb_book` VALUES ('1', 'T123', 'java编程思想', '诸葛亮', '25.00', '机械出版社', '1');
-INSERT INTO `tb_book` VALUES ('2', 'T124', 'angularJs权威指南', '郭忠跃', '82.60', '清华大学', '1');
-INSERT INTO `tb_book` VALUES ('3', '是豆腐干豆腐', '是的发送到', '是的发送到', '25.00', '士大夫撒', '1');
-INSERT INTO `tb_book` VALUES ('4', 'T120', 'css权威指南', '郭忠跃', '500.00', '中心出版社', '0');
-INSERT INTO `tb_book` VALUES ('5', 'sad', '防守打法', '都发送', '56.00', '地方', '0');
-INSERT INTO `tb_book` VALUES ('6', '22323', '问问', '发到的', '4544.00', '水电费', '0');
-INSERT INTO `tb_book` VALUES ('7', '是的发送到', '东方闪电', '都是非法', '5.00', '的风格', '0');
-INSERT INTO `tb_book` VALUES ('9', 'T12306', 'sfsda', 'sdf', '45.00', 'dfgz', '0');
-INSERT INTO `tb_book` VALUES ('10', 'fd', 'fd', 'dsfa', '545.00', '5qfasd', '0');
+INSERT INTO `tb_book` VALUES ('1', 'T123', 'java编程思想', '诸葛亮', '25.00', '机械出版社', '0');
+INSERT INTO `tb_book` VALUES ('2', 'T124', 'angularJs权威指南', '郭忠跃', '82.60', '清华大学', '0');
+INSERT INTO `tb_book` VALUES ('3', 'T120', 'css权威指南', '郭忠跃', '500.00', '中心出版社', '0');
 
 -- ----------------------------
 -- Table structure for `tb_borrow`
@@ -61,13 +55,6 @@ CREATE TABLE `tb_borrow` (
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of tb_borrow
--- ----------------------------
-INSERT INTO `tb_borrow` VALUES ('30', '2015-08-14 20:14:07', '2015-08-14 20:15:21', '2015-08-14 20:15:21', '3', '30', '2', '30');
-INSERT INTO `tb_borrow` VALUES ('31', '2015-08-14 20:20:33', '2015-08-14 20:20:33', '2015-08-14 20:20:33', '1', '30', '2', '30');
-INSERT INTO `tb_borrow` VALUES ('32', '2015-08-14 20:20:33', '2015-08-14 20:20:33', '2015-08-14 20:20:33', '2', '30', '2', '30');
-
--- ----------------------------
 -- Table structure for `tb_department`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_department`;
@@ -80,11 +67,7 @@ CREATE TABLE `tb_department` (
 -- ----------------------------
 -- Records of tb_department
 -- ----------------------------
-INSERT INTO `tb_department` VALUES ('1', '研发部');
-INSERT INTO `tb_department` VALUES ('2', '市场部');
-INSERT INTO `tb_department` VALUES ('3', '财务部');
-INSERT INTO `tb_department` VALUES ('4', '产品中心');
-INSERT INTO `tb_department` VALUES ('6', '工程部1');
+INSERT INTO `tb_department` VALUES ('1', '框架研发部');
 
 -- ----------------------------
 -- Table structure for `tb_manager`
@@ -124,23 +107,6 @@ CREATE TABLE `tb_user` (
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES ('30', '郭延思', '1', '架构师', '1990-09-07', '2014-06-23', '4QrcOUm6Wau+VuBX8g+IPg==', 'guoyansi', '1', '1');
-INSERT INTO `tb_user` VALUES ('44', '1', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '1', '1', '0');
-INSERT INTO `tb_user` VALUES ('45', '2', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '2', '1', '1');
-INSERT INTO `tb_user` VALUES ('46', '李盼盼', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '3', '0', '1');
-INSERT INTO `tb_user` VALUES ('47', '44444', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '5', '0', '0');
-INSERT INTO `tb_user` VALUES ('48', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '6', '0', '0');
-INSERT INTO `tb_user` VALUES ('49', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '7', '0', '0');
-INSERT INTO `tb_user` VALUES ('50', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '8', '0', '0');
-INSERT INTO `tb_user` VALUES ('51', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'asdfasdf', '0', '0');
-INSERT INTO `tb_user` VALUES ('52', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '所得税', '0', '0');
-INSERT INTO `tb_user` VALUES ('53', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '热热', '0', '0');
-INSERT INTO `tb_user` VALUES ('55', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋', '0', '0');
-INSERT INTO `tb_user` VALUES ('56', '444446', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费', '0', '0');
-INSERT INTO `tb_user` VALUES ('57', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费大道', '0', '0');
-INSERT INTO `tb_user` VALUES ('58', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费大道天天', '1', '0');
-INSERT INTO `tb_user` VALUES ('59', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费大道天天谁谁谁', '0', '0');
-INSERT INTO `tb_user` VALUES ('60', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费大道天天谁谁谁撒发生', '0', '0');
-INSERT INTO `tb_user` VALUES ('61', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '微文深诋水电费大道天天谁谁谁撒发生啊沙发上', '0', '0');
-INSERT INTO `tb_user` VALUES ('62', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'werewolf', '1', '0');
-INSERT INTO `tb_user` VALUES ('63', '444446水电费多少分', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', '许', '0', '0');
+INSERT INTO `tb_user` VALUES ('1', '郭延思', '1', 'Project Owner', '1990-09-07', '2014-06-23', '4QrcOUm6Wau+VuBX8g+IPg==', 'guoyansi', '1', '1');
+INSERT INTO `tb_user` VALUES ('2', 'admin', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'admin', '1', '1');
+INSERT INTO `tb_user` VALUES ('3', 'test', '1', '1223', null, null, '4QrcOUm6Wau+VuBX8g+IPg==', 'test', '1', '0');
